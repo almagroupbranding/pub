@@ -3,96 +3,140 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Alma AI Admin | The Alma</title>
+  <title>AI Admin | The Alma</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script src="site-config.js"></script>
   <style>
-    .admin-shell{padding:40px clamp(16px,4vw,58px) 80px}
-    .admin-grid{display:grid;grid-template-columns:minmax(260px,.48fr) minmax(0,1fr);gap:1.2rem;align-items:start}
-    .admin-panel{background:var(--paper);border:2px solid rgba(123,23,48,.35);border-radius:var(--radius);padding:1.25rem;box-shadow:var(--shadow)}
-    .admin-panel h1{font-size:clamp(2.2rem,5vw,4rem)}
-    .admin-panel h2{font-size:2rem}
-    .admin-panel label{display:block;font-weight:900;margin:.8rem 0 .35rem}
-    .admin-panel textarea{min-height:160px}
-    .admin-result{white-space:pre-wrap;background:#fffdf8;border:1px solid var(--line);border-radius:14px;padding:1rem;margin-top:1rem;overflow:auto}
-    .draft-card{border:1px solid var(--line);border-radius:16px;padding:1rem;margin-top:1rem;background:#fffaf1}
+    body{background:linear-gradient(180deg,#f5ead8,#efe0c8)}
+    .ai-page{padding:34px clamp(16px,4vw,56px) 72px}
+    .ai-hero{display:grid;grid-template-columns:minmax(0,.9fr) minmax(300px,.72fr);gap:1.1rem;align-items:stretch;margin-bottom:1.1rem}
+    .ai-card{background:var(--paper);border:2px solid rgba(123,23,48,.28);border-radius:22px;padding:1.35rem;box-shadow:var(--shadow)}
+    .ai-title{font-family:"Libre Baskerville",Georgia,serif;color:var(--burgundy);font-size:clamp(2rem,4vw,3.4rem);line-height:1.05;margin:0 0 .75rem;letter-spacing:-.04em}
+    .ai-subtitle{font-size:1.05rem;color:var(--muted);max-width:720px}
+    .ai-kicker{margin:0 0 .65rem;color:var(--burgundy);font-weight:950;text-transform:uppercase;letter-spacing:.17em;font-size:.74rem}
+    .ai-steps{display:grid;gap:.65rem;margin-top:1rem}
+    .ai-step{display:flex;gap:.7rem;align-items:flex-start;background:#fffaf1;border:1px solid var(--line);border-radius:16px;padding:.8rem}
+    .ai-step b{display:grid;place-items:center;min-width:28px;height:28px;border-radius:50%;background:var(--burgundy);color:var(--paper);font-size:.85rem}
+    .ai-grid{display:grid;grid-template-columns:340px minmax(0,1fr);gap:1.1rem;align-items:start}
+    .ai-panel{background:var(--paper);border:2px solid rgba(123,23,48,.28);border-radius:22px;padding:1.2rem;box-shadow:var(--shadow)}
+    .ai-panel h2{font-size:1.75rem;margin-bottom:.6rem}
+    .ai-panel label{display:block;font-weight:900;margin:.8rem 0 .35rem}
+    .ai-panel textarea{min-height:135px}
+    .ai-muted{color:var(--muted);font-size:.94rem}
+    .ai-warning{background:#fff1df;border:1px solid #ddb98e;border-radius:16px;padding:.9rem;margin:.85rem 0;color:#5f3311;font-weight:800}
+    .ai-ok{background:#edf7ed;border:1px solid #9bc39b;border-radius:16px;padding:.9rem;margin:.85rem 0;color:#244f24;font-weight:800}
     .hidden{display:none!important}
-    .status{font-weight:900;margin-top:1rem;color:var(--burgundy)}
     .inline-actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1rem}
-    @media(max-width:900px){.admin-grid{grid-template-columns:1fr}}
+    .draft-card{border:1px solid var(--line);border-radius:18px;padding:1rem;background:#fffaf1;margin-top:1rem}
+    .json-box{white-space:pre-wrap;background:#fffdf8;border:1px solid var(--line);border-radius:14px;padding:1rem;overflow:auto;font-size:.9rem}
+    .status{font-weight:900;color:var(--burgundy);margin-top:.85rem}
+    .mini-code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#fffaf1;border:1px solid var(--line);border-radius:10px;padding:.2rem .4rem}
+    @media(max-width:900px){.ai-hero,.ai-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-  <div class="site-shell">
-    <header class="header">
-      <a class="brand" href="index.html"><img src="assets/logo/alma-building.png" alt=""><span><strong>THE ALMA</strong><small>AI Admin</small></span></a>
-      <nav class="nav"><a href="index.html">View site</a><a href="https://app.pagescms.org/" target="_blank" rel="noopener">Pages CMS</a></nav>
-    </header>
+<div class="site-shell">
+  <header class="header">
+    <a class="brand" href="index.html">
+      <img src="assets/logo/alma-building.png" alt="">
+      <span><strong>THE ALMA</strong><small>AI Admin</small></span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">View site</a>
+      <a href="https://app.pagescms.org/" target="_blank" rel="noopener">Pages CMS</a>
+      <a class="nav-button" href="AI-ADMIN-SETUP.md">Setup notes</a>
+    </nav>
+  </header>
 
-    <main class="admin-shell">
-      <section class="admin-grid">
-        <aside class="admin-panel">
-          <p class="kicker">Authorised users only</p>
-          <h1>AI Post Writer</h1>
-          <p>Draft Alma-style updates, then publish them to GitHub only after approval.</p>
+  <main class="ai-page">
+    <section class="ai-hero">
+      <div class="ai-card">
+        <p class="ai-kicker">Authorised users only</p>
+        <h1 class="ai-title">AI Post Writer</h1>
+        <p class="ai-subtitle">Draft an Alma-style event or news update, check it, then publish it to GitHub only after approval.</p>
+      </div>
+      <div class="ai-card">
+        <p class="ai-kicker">How the password works</p>
+        <p class="ai-muted">There is no fixed password in the website. You set the password once in the Cloudflare Worker secret called <span class="mini-code">ADMIN_PASSWORD</span>.</p>
+        <p class="ai-muted">Until the Worker URL is added in <span class="mini-code">site-config.js</span>, login will show “Worker not connected yet”.</p>
+      </div>
+    </section>
 
-          <div id="loginBox">
-            <label for="password">Admin password</label>
-            <input id="password" type="password" autocomplete="current-password">
-            <button class="btn primary full" id="loginBtn" type="button">Sign in</button>
-            <p class="status" id="loginStatus"></p>
-          </div>
+    <div id="notConnected" class="ai-warning hidden">
+      <strong>Worker not connected yet.</strong><br>
+      Open <span class="mini-code">site-config.js</span> and replace the placeholder Worker URL after deploying the Cloudflare Worker. This is why you are seeing failed fetch.
+    </div>
 
-          <div id="adminBox" class="hidden">
-            <p class="status">Signed in.</p>
-            <button class="btn secondary" id="logoutBtn" type="button">Sign out</button>
-          </div>
-        </aside>
+    <section class="ai-grid">
+      <aside class="ai-panel">
+        <p class="ai-kicker">Login</p>
+        <h2>Admin access</h2>
+        <div id="loginBox">
+          <label for="password">Admin password</label>
+          <input id="password" type="password" autocomplete="current-password" placeholder="Password set in Cloudflare">
+          <button class="btn primary full" id="loginBtn" type="button">Sign in</button>
+          <p class="status" id="loginStatus"></p>
+        </div>
+        <div id="adminBox" class="hidden">
+          <div class="ai-ok">Signed in. You can now draft and publish updates.</div>
+          <button class="btn secondary" id="logoutBtn" type="button">Sign out</button>
+        </div>
 
-        <section class="admin-panel hidden" id="writerBox">
-          <p class="kicker">Create update</p>
-          <h2>What do you want to post?</h2>
+        <div class="ai-steps">
+          <div class="ai-step"><b>1</b><span>Deploy the Worker.</span></div>
+          <div class="ai-step"><b>2</b><span>Set <span class="mini-code">ADMIN_PASSWORD</span> as a Worker secret.</span></div>
+          <div class="ai-step"><b>3</b><span>Paste the Worker URL into <span class="mini-code">site-config.js</span>.</span></div>
+        </div>
+      </aside>
 
-          <label for="postType">Type</label>
-          <select id="postType">
-            <option value="event">Event</option>
-            <option value="news">News update</option>
-          </select>
+      <section class="ai-panel hidden" id="writerBox">
+        <p class="ai-kicker">Create update</p>
+        <h2>What do you want to post?</h2>
 
-          <label for="rawPrompt">Plain English instruction</label>
-          <textarea id="rawPrompt" placeholder="Example: Add karaoke next Thursday, 8pm, free entry. Make it sound warm and local."></textarea>
+        <label for="postType">Type</label>
+        <select id="postType">
+          <option value="event">Event</option>
+          <option value="news">News update</option>
+        </select>
 
-          <div class="inline-actions">
-            <button class="btn primary" id="draftBtn" type="button">Draft with AI</button>
-            <button class="btn secondary" id="clearBtn" type="button">Clear</button>
-          </div>
+        <label for="rawPrompt">Plain English instruction</label>
+        <textarea id="rawPrompt" placeholder="Example: Add karaoke next Thursday, 8pm, free entry. Make it sound warm and local."></textarea>
 
-          <div id="draftStatus" class="status"></div>
-          <div id="draftArea"></div>
-        </section>
+        <div class="inline-actions">
+          <button class="btn primary" id="draftBtn" type="button">Draft with AI</button>
+          <button class="btn secondary" id="clearBtn" type="button">Clear</button>
+        </div>
+
+        <div id="draftStatus" class="status"></div>
+        <div id="draftArea"></div>
       </section>
-    </main>
-  </div>
+    </section>
+  </main>
+</div>
 
 <script>
 const API_BASE = window.ALMA_AI_API || "https://YOUR-WORKER.your-subdomain.workers.dev";
+const PLACEHOLDER = API_BASE.includes("YOUR-WORKER");
 let currentDraft = null;
 
 const $ = s => document.querySelector(s);
-
 function setStatus(id, text){ $(id).textContent = text || ""; }
 
+if(PLACEHOLDER){
+  $("#notConnected").classList.remove("hidden");
+  $("#loginStatus").textContent = "Worker not connected yet.";
+}
+
 async function api(path, options = {}){
+  if(PLACEHOLDER) throw new Error("Worker not connected yet. Edit site-config.js with your Worker URL.");
   const res = await fetch(API_BASE + path, {
     ...options,
     credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-      ...(options.headers || {})
-    }
+    headers: {"Content-Type": "application/json", ...(options.headers || {})}
   });
   const data = await res.json().catch(() => ({}));
   if(!res.ok) throw new Error(data.error || `Request failed: ${res.status}`);
@@ -107,9 +151,7 @@ async function login(){
     $("#adminBox").classList.remove("hidden");
     $("#writerBox").classList.remove("hidden");
     setStatus("#loginStatus", "");
-  }catch(err){
-    setStatus("#loginStatus", err.message);
-  }
+  }catch(err){ setStatus("#loginStatus", err.message); }
 }
 
 async function draft(){
@@ -125,9 +167,7 @@ async function draft(){
     currentDraft = data;
     setStatus("#draftStatus", "Draft ready. Check it carefully before publishing.");
     renderDraft(data);
-  }catch(err){
-    setStatus("#draftStatus", err.message);
-  }
+  }catch(err){ setStatus("#draftStatus", err.message); }
 }
 
 function escapeHtml(str){
@@ -138,7 +178,7 @@ function renderDraft(data){
   const payload = data.payload || {};
   $("#draftArea").innerHTML = `
     <div class="draft-card">
-      <p class="kicker">${escapeHtml(data.type)}</p>
+      <p class="ai-kicker">${escapeHtml(data.type)}</p>
       <h3>${escapeHtml(payload.title)}</h3>
       <p>${escapeHtml(payload.summary)}</p>
       <p><strong>Date:</strong> ${escapeHtml(payload.date || "N/A")}<br>
@@ -147,7 +187,7 @@ function renderDraft(data){
       <h3>Social caption</h3>
       <p>${escapeHtml(data.social_caption || "")}</p>
       <h3>JSON</h3>
-      <div class="admin-result">${escapeHtml(JSON.stringify(payload, null, 2))}</div>
+      <div class="json-box">${escapeHtml(JSON.stringify(payload, null, 2))}</div>
       <div class="inline-actions">
         <button class="btn primary" id="publishBtn" type="button">Approve & publish to GitHub</button>
       </div>
@@ -163,10 +203,8 @@ async function publish(){
       method:"POST",
       body: JSON.stringify({type: currentDraft.type, payload: currentDraft.payload})
     });
-    setStatus("#draftStatus", "Published. GitHub Pages should update shortly. Commit: " + (data.commit || "created"));
-  }catch(err){
-    setStatus("#draftStatus", err.message);
-  }
+    setStatus("#draftStatus", "Published. GitHub Pages should update shortly.");
+  }catch(err){ setStatus("#draftStatus", err.message); }
 }
 
 async function logout(){

@@ -1,120 +1,176 @@
-# The Alma AI Admin — Option 2 Build
+# Simple AI Admin Setup
 
-This package adds:
+The pages are now easier to use, but the AI still needs a secure backend.
 
-1. `ai-admin.html`  
-   Admin-only AI writer. It drafts an event/news update and only publishes after approval.
+## Why you are seeing “Failed to fetch”
 
-2. `function-ai.html`  
-   Public AI-assisted function room enquiry. It asks no more than three questions, checks availability files, filters unsuitable events, and emails the owner.
-
-3. `worker/`  
-   Cloudflare Worker backend. This keeps the OpenAI key, GitHub token and email key secret.
-
-4. `content/function-availability.json`  
-   Editable booked/pending dates for the function room.
-
-5. Updated `.pages.yml`  
-   Pages CMS can now edit function room availability too.
-
----
-
-## Why a Worker is needed
-
-GitHub Pages is public static hosting. It must not contain:
-
-- OpenAI API keys
-- GitHub tokens
-- email API keys
-- admin passwords
-
-The Worker is the private secure layer.
-
----
-
-## Deploy the website files
-
-Upload all files except the `worker/` folder to the `/pub` GitHub repository root.
-
-Make sure `.pages.yml` is present in the root. If hidden files are missed, use `PAGES-CMS-CONFIG-COPY.yml` and create `.pages.yml` manually.
-
----
-
-## Deploy the Worker
-
-From the `worker/` folder:
-
-```bash
-npm install
-npx wrangler login
-npx wrangler secret put ADMIN_PASSWORD
-npx wrangler secret put SESSION_SECRET
-npx wrangler secret put OPENAI_API_KEY
-npx wrangler secret put GITHUB_TOKEN
-npx wrangler secret put RESEND_API_KEY
-npx wrangler deploy
-```
-
-Use a long random value for `SESSION_SECRET`.
-
----
-
-## GitHub token
-
-Create a fine-grained GitHub token with access only to:
-
-- owner: `almagroupbranding`
-- repo: `pub`
-- permission: Contents read/write
-
-The Worker uses this to update:
-
-- `content/events.json`
-- `content/news.json`
-
----
-
-## Email
-
-This template uses Resend for email.
-
-Set:
-
-```toml
-FROM_EMAIL = "The Alma <events@your-verified-domain.co.uk>"
-OWNER_EMAIL = "info@thealmapub.co.uk"
-```
-
-You must verify the sending domain in Resend first.
-
----
-
-## Connect the front-end pages to the Worker
-
-After deploying the Worker, copy its URL.
-
-In both:
-
-- `ai-admin.html`
-- `function-ai.html`
-
-replace:
+The website is trying to call a placeholder Worker URL:
 
 ```js
-const API_BASE = window.ALMA_AI_API || "https://YOUR-WORKER.your-subdomain.workers.dev";
+https://YOUR-WORKER.your-subdomain.workers.dev
 ```
 
-with the actual Worker URL.
+Until that is replaced, the admin login and function AI cannot work.
+
+## Where the admin password comes from
+
+There is no fixed password.
+
+You create the password by setting this Cloudflare Worker secret:
+
+```text
+ADMIN_PASSWORD
+```
+
+Whatever value you put there is the password you type into:
+
+```text
+https://almagroupbranding.github.io/pub/ai-admin.html
+```
+
+Example password you could use while testing:
+
+```text
+AlmaAdmin-Change-Me-2026!
+```
+
+Do not put the password into GitHub.
 
 ---
 
-## Calendar checking
+# Easiest setup route
 
-The AI function enquiry currently checks:
+## Step 1 — Create the Worker
 
-- `content/events.json`
-- `content/function-availability.json`
+1. Go to Cloudflare.
+2. Go to Workers & Pages.
+3. Create a Worker.
+4. Name it:
 
-That means it will avoid known public events and known booked/pending function dates.
+```text
+alma-ai-admin
+```
 
-Later Phase 3 can connect directly to Google Calendar, Outlook Calendar, or a proper booking system API.
+5. Paste the code from:
+
+```text
+worker/src/index.js
+```
+
+6. Save and deploy.
+
+Cloudflare will give you a URL like:
+
+```text
+https://alma-ai-admin.YOURNAME.workers.dev
+```
+
+## Step 2 — Add Worker secrets
+
+In the Worker settings, add these secrets:
+
+```text
+ADMIN_PASSWORD
+SESSION_SECRET
+OPENAI_API_KEY
+GITHUB_TOKEN
+RESEND_API_KEY
+```
+
+Use:
+
+```text
+ADMIN_PASSWORD = the admin password you want
+SESSION_SECRET = any long random string, 32+ characters
+```
+
+The GitHub token needs access only to the `almagroupbranding/pub` repository with Contents read/write.
+
+## Step 3 — Add Worker variables
+
+In the Worker settings, add these variables:
+
+```text
+SITE_ORIGIN = https://almagroupbranding.github.io
+GITHUB_OWNER = almagroupbranding
+GITHUB_REPO = pub
+GITHUB_BRANCH = main
+OWNER_EMAIL = info@thealmapub.co.uk
+FROM_EMAIL = The Alma <events@your-verified-domain.co.uk>
+OPENAI_MODEL = gpt-4.1-mini
+```
+
+## Step 4 — Connect the site to the Worker
+
+Open this file in GitHub:
+
+```text
+site-config.js
+```
+
+Replace:
+
+```js
+window.ALMA_AI_API = "https://YOUR-WORKER.your-subdomain.workers.dev";
+```
+
+With your real Worker URL:
+
+```js
+window.ALMA_AI_API = "https://alma-ai-admin.YOURNAME.workers.dev";
+```
+
+Commit the change.
+
+## Step 5 — Test
+
+Open:
+
+```text
+https://almagroupbranding.github.io/pub/ai-admin.html
+```
+
+Type the password you set as `ADMIN_PASSWORD`.
+
+---
+
+# What works after setup
+
+## Admin AI
+
+The admin can type:
+
+```text
+Add karaoke next Thursday at 8pm. Free entry. Make it sound warm and local.
+```
+
+The AI drafts the event.
+
+The admin approves it.
+
+The Worker updates:
+
+```text
+content/events.json
+```
+
+GitHub Pages republishes the site.
+
+## Function AI
+
+Customers can use:
+
+```text
+https://almagroupbranding.github.io/pub/function-ai.html
+```
+
+It checks:
+
+```text
+content/events.json
+content/function-availability.json
+```
+
+Then emails the enquiry to the owner.
+
+It does not confirm bookings.
