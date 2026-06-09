@@ -1,24 +1,14 @@
 {
   "images": [
     {
-      "src": "https://useyourlocal.imgix.net/pub/2966/library/IMG_8680.jpeg?auto=format&crop=entropy&fit=crop&h=900&w=1400",
-      "alt": "The Alma exterior with hanging baskets and pub sign",
-      "label": "The Alma exterior"
+      "src": "assets/logo/alma-building.png",
+      "alt": "Illustration of The Alma pub exterior",
+      "label": "The Alma, Sidcup"
     },
     {
-      "src": "https://useyourlocal.imgix.net/pub/2966/library/IMG_0837.jpg?auto=format&crop=entropy&fit=crop&h=720&w=900",
-      "alt": "Sunny garden seating area",
-      "label": "Garden seating"
-    },
-    {
-      "src": "https://useyourlocal.imgix.net/pub/2966/library/IMG_0831.jpg?auto=format&crop=entropy&fit=crop&h=720&w=900",
-      "alt": "Garden picnic tables and striped parasols",
-      "label": "Garden tables"
-    },
-    {
-      "src": "https://useyourlocal.imgix.net/pub/2966/library/IMG_8347.JPG?auto=format&crop=entropy&fit=crop&h=720&w=900",
-      "alt": "Outdoor tables in garden area",
-      "label": "Summer garden"
+      "src": "assets/images/social-preview.png",
+      "alt": "The Alma branded preview card",
+      "label": "Traditional pub with Soul"
     }
   ]
 }

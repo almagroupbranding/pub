@@ -4,75 +4,55 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>What’s On | The Alma Sidcup</title>
-  <meta name="description" content="Upcoming events, live entertainment, quiz nights, karaoke and news at The Alma Sidcup.">
+  <meta name="description" content="Upcoming events and news at The Alma Sidcup.">
+  <meta property="og:image" content="assets/images/social-preview.png">
   <link rel="icon" href="assets/logo/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="">
-  <a class="skip-link" href="#main">Skip to content</a>
-  
-<header class="site-header">
-  <div class="wrap header-grid">
-    <a class="brand-lockup" href="index.html" aria-label="The Alma home">
-      <img src="assets/logo/alma-building.png" alt="" aria-hidden="true">
-      <span>
-        <strong>THE ALMA</strong>
-        <small>Sidcup, Kent</small>
-      </span>
-    </a>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="siteNav">Menu</button>
-    <div id="siteNav">
-      <nav class="site-nav" aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="food-drink.html">Food & Drink</a>
-        <a href="events.html">Events</a>
-        <a href="venue-hire.html">Venue Hire</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="about.html">About</a>
-        <a class="nav-cta" href="contact.html">Contact</a>
-      </nav>
-    </div>
-  </div>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header class="header">
+  <a class="brand" href="index.html" aria-label="The Alma home">
+    <img src="assets/logo/alma-building.png" alt="" aria-hidden="true">
+    <span><strong>THE ALMA</strong><small>Sidcup, Kent</small></span>
+  </a>
+  <button class="menu-toggle" aria-expanded="false" aria-controls="navPanel">Menu</button>
+  <div id="navPanel"><nav class="nav" aria-label="Main navigation">
+  <a href="index.html">Home</a>
+  <a href="food-drink.html">Food & Drink</a>
+  <a href="events.html">Events</a>
+  <a href="venue-hire.html">Venue Hire</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="about.html">About</a>
+  <a class="nav-button" href="contact.html">Contact</a>
+</nav></div>
 </header>
-
-  <main id="main">
-<section class="page-hero">
-  <div class="wrap page-hero-grid">
-    <div class="sign-panel">
-      <p class="eyebrow">News, offers & events</p>
-      <h1>What’s on</h1>
-      <p class="lead">Quiz nights, karaoke, DJs, singers, carveries and proper local pub entertainment.</p>
-    </div>
-    <div class="page-photo"><img src="https://useyourlocal.imgix.net/pub/2966/library/IMG_8680.jpeg?auto=format&crop=entropy&fit=crop&h=900&w=1000" alt="The Alma exterior"></div>
-  </div>
+    <main id="main">
+<section class="page-head">
+  <p class="kicker">News, offers & events</p>
+  <h1>What’s on</h1>
+  <p class="lead">Quiz nights, karaoke, DJs, singers, carveries and proper local pub entertainment.</p>
 </section>
 <section class="section">
-  <div class="wrap">
-    <div class="section-head">
-      <div><p class="eyebrow">Calendar</p><h2>Upcoming events</h2></div>
-      <a class="button secondary" href="contact.html">Ask about a table</a>
-    </div>
-    <div class="event-grid event-grid-large" data-events-limit="99"></div>
+  <div class="section-title">
+    <div><p class="kicker">Calendar</p><h2>Upcoming events</h2></div>
+    <a class="btn secondary" href="contact.html">Ask about a table</a>
   </div>
+  <div class="cards three" data-events-limit="99"></div>
 </section>
-<section class="section section-paper">
-  <div class="wrap">
-    <div class="section-head"><div><p class="eyebrow">Latest</p><h2>News from the bar</h2></div></div>
-    <div class="news-grid" data-news></div>
-  </div>
+<section class="section tint">
+  <div class="section-title"><div><p class="kicker">Latest</p><h2>News from the bar</h2></div></div>
+  <div class="cards three" data-news></div>
 </section>
 </main>
-  
-<footer class="site-footer">
-  <div class="wrap footer-grid">
+    <footer class="footer">
+  <div class="footer-inner">
     <div>
-      <div class="footer-brand">
-        <img src="assets/logo/alma-building.png" alt="">
-        <strong>THE ALMA</strong>
-      </div>
+      <div class="footer-brand">THE ALMA</div>
       <p>Sidcup’s only traditional old school pub with Soul.</p>
     </div>
     <div>
@@ -84,16 +64,13 @@
       <p><a href="tel:07923009864">07923 009 864</a><br><a href="mailto:info@thealmapub.co.uk">info@thealmapub.co.uk</a></p>
     </div>
     <div>
-      <h3>Update in Phase 2</h3>
-      <p>News, events, menus and gallery content are editable through Pages CMS.</p>
+      <h3>Useful links</h3>
+      <p><a href="events.html">What’s On</a><br><a href="venue-hire.html">Venue Hire</a><br><a href="food-drink.html">Food & Drink</a></p>
     </div>
   </div>
-  <div class="wrap footer-bottom">
-    <span>© The Alma, Sidcup</span>
-    <span>Website by The Alma Group</span>
-  </div>
+  <div class="footer-bottom">© The Alma, Sidcup · Website by The Alma Group</div>
 </footer>
-
+  </div>
   <script src="script.js"></script>
 </body>
 </html>

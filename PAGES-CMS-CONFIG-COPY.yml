@@ -1,0 +1,141 @@
+media: assets/images
+
+content:
+  - name: site_settings
+    label: Site Settings
+    type: file
+    path: content/settings.json
+    fields:
+      - name: name
+        label: Pub Name
+        type: string
+      - name: tagline
+        label: Tagline
+        type: string
+      - name: intro
+        label: Intro
+        type: text
+      - name: address
+        label: Address
+        type: text
+      - name: phone
+        label: Phone
+        type: string
+      - name: email
+        label: Email
+        type: string
+      - name: notice
+        label: Opening Times Notice
+        type: text
+      - name: opening_times
+        label: Opening Times
+        type: object
+        list: true
+        fields:
+          - name: day
+            label: Day
+            type: string
+          - name: time
+            label: Time
+            type: string
+      - name: food_times
+        label: Food Serving Times
+        type: object
+        list: true
+        fields:
+          - name: day
+            label: Day
+            type: string
+          - name: time
+            label: Time
+            type: string
+
+  - name: events
+    label: Events
+    type: file
+    path: content/events.json
+    fields:
+      - name: events
+        label: Events
+        type: object
+        list: true
+        fields:
+          - name: date
+            label: Date
+            type: date
+          - name: title
+            label: Title
+            type: string
+          - name: type
+            label: Event Type
+            type: string
+          - name: summary
+            label: Summary
+            type: text
+          - name: cta
+            label: Button Text
+            type: string
+
+  - name: news
+    label: News Updates
+    type: file
+    path: content/news.json
+    fields:
+      - name: news
+        label: News Updates
+        type: object
+        list: true
+        fields:
+          - name: date
+            label: Date
+            type: date
+          - name: title
+            label: Title
+            type: string
+          - name: summary
+            label: Summary
+            type: text
+
+  - name: food
+    label: Food & Menus
+    type: file
+    path: content/food.json
+    fields:
+      - name: intro
+        label: Food Intro
+        type: text
+      - name: highlights
+        label: Food Highlights
+        type: string
+        list: true
+      - name: menus
+        label: Menu Cards
+        type: object
+        list: true
+        fields:
+          - name: title
+            label: Menu Title
+            type: string
+          - name: text
+            label: Description
+            type: text
+
+  - name: gallery
+    label: Gallery
+    type: file
+    path: content/gallery.json
+    fields:
+      - name: images
+        label: Images
+        type: object
+        list: true
+        fields:
+          - name: src
+            label: Image
+            type: image
+          - name: alt
+            label: Alt Text
+            type: string
+          - name: label
+            label: Caption
+            type: string

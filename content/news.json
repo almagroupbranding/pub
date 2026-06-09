@@ -2,7 +2,7 @@
   "news": [
     {
       "date": "2026-06-07",
-      "title": "Today’s fantastic entertainment is…",
+      "title": "Today’s entertainment",
       "summary": "Old school pub singalong from 4–7pm."
     },
     {
@@ -13,12 +13,7 @@
     {
       "date": "2026-05-30",
       "title": "Football free zone",
-      "summary": "A pub with no TVs — come for proper pub surroundings, conversation and atmosphere."
-    },
-    {
-      "date": "2026-05-30",
-      "title": "Comedy lunch for mums and babies",
-      "summary": "Daytime comedy for grown-ups, babies welcome."
+      "summary": "A pub with no TVs — come for conversation, surroundings and atmosphere."
     }
   ]
 }

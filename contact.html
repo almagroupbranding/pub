@@ -4,78 +4,60 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact | The Alma Sidcup</title>
-  <meta name="description" content="Contact The Alma Sidcup. Address, phone, email, map and opening times.">
+  <meta name="description" content="Contact The Alma Sidcup.">
+  <meta property="og:image" content="assets/images/social-preview.png">
   <link rel="icon" href="assets/logo/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="">
-  <a class="skip-link" href="#main">Skip to content</a>
-  
-<header class="site-header">
-  <div class="wrap header-grid">
-    <a class="brand-lockup" href="index.html" aria-label="The Alma home">
-      <img src="assets/logo/alma-building.png" alt="" aria-hidden="true">
-      <span>
-        <strong>THE ALMA</strong>
-        <small>Sidcup, Kent</small>
-      </span>
-    </a>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="siteNav">Menu</button>
-    <div id="siteNav">
-      <nav class="site-nav" aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="food-drink.html">Food & Drink</a>
-        <a href="events.html">Events</a>
-        <a href="venue-hire.html">Venue Hire</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="about.html">About</a>
-        <a class="nav-cta" href="contact.html">Contact</a>
-      </nav>
-    </div>
-  </div>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header class="header">
+  <a class="brand" href="index.html" aria-label="The Alma home">
+    <img src="assets/logo/alma-building.png" alt="" aria-hidden="true">
+    <span><strong>THE ALMA</strong><small>Sidcup, Kent</small></span>
+  </a>
+  <button class="menu-toggle" aria-expanded="false" aria-controls="navPanel">Menu</button>
+  <div id="navPanel"><nav class="nav" aria-label="Main navigation">
+  <a href="index.html">Home</a>
+  <a href="food-drink.html">Food & Drink</a>
+  <a href="events.html">Events</a>
+  <a href="venue-hire.html">Venue Hire</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="about.html">About</a>
+  <a class="nav-button" href="contact.html">Contact</a>
+</nav></div>
 </header>
-
-  <main id="main">
-<section class="page-hero">
-  <div class="wrap page-hero-grid">
-    <div class="sign-panel">
-      <p class="eyebrow">Contact</p>
-      <h1>Visit The Alma</h1>
-      <p class="lead">For tables, events, food enquiries and function room questions, contact the team directly.</p>
-    </div>
-    <div class="notice-card tall burgundy-card"><h3>10 Alma Road</h3><p>Sidcup, Kent<br>DA14 4EA</p></div>
+    <main id="main">
+<section class="page-head">
+  <p class="kicker">Contact</p>
+  <h1>Visit The Alma</h1>
+  <p class="lead">For tables, events, food enquiries and function room questions, contact the team directly.</p>
+</section>
+<section class="section two-col">
+  <div class="notice-board">
+    <h2>Contact details</h2>
+    <p><strong>Address</strong><br>10 Alma Road, Sidcup, Kent, DA14 4EA</p>
+    <p><strong>Phone</strong><br><a href="tel:07923009864">07923 009 864</a></p>
+    <p><strong>Email</strong><br><a href="mailto:info@thealmapub.co.uk">info@thealmapub.co.uk</a></p>
+    <div class="actions"><a class="btn primary" href="mailto:info@thealmapub.co.uk">Email the pub</a><a class="btn secondary" href="venue-hire.html">Venue hire</a></div>
+  </div>
+  <div class="map">
+    <iframe title="Map to The Alma Sidcup" loading="lazy" src="https://www.google.com/maps?q=The%20Alma%2C%2010%20Alma%20Road%2C%20Sidcup%20DA14%204EA&output=embed"></iframe>
   </div>
 </section>
-<section class="section">
-  <div class="wrap contact-grid">
-    <div class="sign-panel">
-      <h2>Contact details</h2>
-      <p><strong>Address</strong><br>10 Alma Road, Sidcup, Kent, DA14 4EA</p>
-      <p><strong>Phone</strong><br><a href="tel:07923009864">07923 009 864</a></p>
-      <p><strong>Email</strong><br><a href="mailto:info@thealmapub.co.uk">info@thealmapub.co.uk</a></p>
-      <div class="button-row"><a class="button primary" href="mailto:info@thealmapub.co.uk">Email the pub</a><a class="button secondary" href="venue-hire.html">Venue hire</a></div>
-    </div>
-    <div class="map-card"><iframe title="Map to The Alma Sidcup" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=The%20Alma%2C%2010%20Alma%20Road%2C%20Sidcup%20DA14%204EA&output=embed"></iframe></div>
-  </div>
-</section>
-<section class="section section-paper">
-  <div class="wrap times-grid">
-    <div class="sign-panel"><h2>Opening times</h2><div data-opening-times></div></div>
-    <div class="sign-panel"><h2>Food serving times</h2><div data-food-times></div></div>
-  </div>
+<section class="section tint two-col">
+  <div class="time-card"><h2>Opening times</h2><div data-opening-times></div></div>
+  <div class="time-card"><h2>Food serving times</h2><div data-food-times></div></div>
 </section>
 </main>
-  
-<footer class="site-footer">
-  <div class="wrap footer-grid">
+    <footer class="footer">
+  <div class="footer-inner">
     <div>
-      <div class="footer-brand">
-        <img src="assets/logo/alma-building.png" alt="">
-        <strong>THE ALMA</strong>
-      </div>
+      <div class="footer-brand">THE ALMA</div>
       <p>Sidcup’s only traditional old school pub with Soul.</p>
     </div>
     <div>
@@ -87,16 +69,13 @@
       <p><a href="tel:07923009864">07923 009 864</a><br><a href="mailto:info@thealmapub.co.uk">info@thealmapub.co.uk</a></p>
     </div>
     <div>
-      <h3>Update in Phase 2</h3>
-      <p>News, events, menus and gallery content are editable through Pages CMS.</p>
+      <h3>Useful links</h3>
+      <p><a href="events.html">What’s On</a><br><a href="venue-hire.html">Venue Hire</a><br><a href="food-drink.html">Food & Drink</a></p>
     </div>
   </div>
-  <div class="wrap footer-bottom">
-    <span>© The Alma, Sidcup</span>
-    <span>Website by The Alma Group</span>
-  </div>
+  <div class="footer-bottom">© The Alma, Sidcup · Website by The Alma Group</div>
 </footer>
-
+  </div>
   <script src="script.js"></script>
 </body>
 </html>

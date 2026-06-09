@@ -1,42 +1,30 @@
-# The Alma — Phase 2 Website Rebuild
+# The Alma — Complete Redesign + Pages CMS
 
-This version fixes the visual flow and adds Pages CMS support.
+This version removes the oversized banner and rebuilds the site with a calmer, cleaner, more commercial layout.
 
-## What changed
+## Upload
 
-- Stronger homepage layout with hero, photo card, quick action panel and clearer page flow
-- Better header logo treatment
-- More premium cards and event tiles
-- Less empty space above the fold
-- Pages CMS config added via `.pages.yml`
-- Content JSON reshaped to be easier to manage through a dashboard
+Upload every file and folder to the root of the `/pub` repository.
 
-## Upload to GitHub
-
-Upload everything to the root of `/pub`, replacing the current files.
-
-Then refresh:
-
-```text
-https://almagroupbranding.github.io/pub/
-```
+Important: make sure the hidden file `.pages.yml` is uploaded. If GitHub misses hidden files, use `PAGES-CMS-CONFIG-COPY.yml` and copy its contents into a new root file called `.pages.yml`.
 
 ## Pages CMS
 
-This repo now includes:
+Pages CMS will edit:
 
-```text
-.pages.yml
-```
+- Site Settings
+- Events
+- News Updates
+- Food & Menus
+- Gallery
 
-That lets Pages CMS edit:
+## Commercial notes
 
-- `content/settings.json`
-- `content/events.json`
-- `content/news.json`
-- `content/food.json`
-- `content/gallery.json`
-
-## Commercial purpose
-
-The site is built to make The Alma feel better managed, more consistent and more trustworthy before customers arrive. Events and venue hire are more prominent, which should help the team capture better enquiries instead of vague emails.
+The design is intentionally less fussy:
+- smaller header
+- no giant banner image
+- clear first impression
+- clear quick links
+- clear event cards
+- clear venue hire path
+- content managed through JSON files

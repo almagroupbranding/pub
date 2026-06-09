@@ -4,83 +4,61 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Food & Drink | The Alma Sidcup</title>
-  <meta name="description" content="Food, lunch, pizzas, carvery and serving times at The Alma Sidcup.">
+  <meta name="description" content="Food, drink, pizzas and serving times at The Alma Sidcup.">
+  <meta property="og:image" content="assets/images/social-preview.png">
   <link rel="icon" href="assets/logo/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="">
-  <a class="skip-link" href="#main">Skip to content</a>
-  
-<header class="site-header">
-  <div class="wrap header-grid">
-    <a class="brand-lockup" href="index.html" aria-label="The Alma home">
-      <img src="assets/logo/alma-building.png" alt="" aria-hidden="true">
-      <span>
-        <strong>THE ALMA</strong>
-        <small>Sidcup, Kent</small>
-      </span>
-    </a>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="siteNav">Menu</button>
-    <div id="siteNav">
-      <nav class="site-nav" aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="food-drink.html">Food & Drink</a>
-        <a href="events.html">Events</a>
-        <a href="venue-hire.html">Venue Hire</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="about.html">About</a>
-        <a class="nav-cta" href="contact.html">Contact</a>
-      </nav>
-    </div>
-  </div>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header class="header">
+  <a class="brand" href="index.html" aria-label="The Alma home">
+    <img src="assets/logo/alma-building.png" alt="" aria-hidden="true">
+    <span><strong>THE ALMA</strong><small>Sidcup, Kent</small></span>
+  </a>
+  <button class="menu-toggle" aria-expanded="false" aria-controls="navPanel">Menu</button>
+  <div id="navPanel"><nav class="nav" aria-label="Main navigation">
+  <a href="index.html">Home</a>
+  <a href="food-drink.html">Food & Drink</a>
+  <a href="events.html">Events</a>
+  <a href="venue-hire.html">Venue Hire</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="about.html">About</a>
+  <a class="nav-button" href="contact.html">Contact</a>
+</nav></div>
 </header>
-
-  <main id="main">
-<section class="page-hero">
-  <div class="wrap page-hero-grid">
-    <div class="sign-panel">
-      <p class="eyebrow">Food & drink</p>
-      <h1>Fresh pub food, proper lunches.</h1>
-      <p class="lead">Freshly cooked food from a continued 5-star rated kitchen, plus stone-baked stuffed crust pizzas and selected special food events.</p>
-    </div>
-    <div class="notice-card tall"><h3>Lunch Menu</h3><p>Monday to Friday<br>12pm–2:30pm</p><strong>Pizzas at the bar</strong></div>
-  </div>
+    <main id="main">
+<section class="page-head">
+  <p class="kicker">Food & drink</p>
+  <h1>Proper pub food, clearly presented.</h1>
+  <p class="lead">Freshly cooked food from The Alma’s 5-star rated kitchen, plus pizzas and selected food events.</p>
 </section>
-<section class="section">
-  <div class="wrap two-column">
-    <div>
-      <p class="eyebrow">Kitchen</p>
-      <h2>Lunch, pizza, pie & mash, carvery.</h2>
-      <p>Lunch is served Monday to Friday, pizzas are available through the week, and selected carvery dates and Manze’s Pie & Mash events are promoted through the events calendar.</p>
-      <a class="button primary" href="events.html">See food events</a>
-    </div>
-    <div class="menu-board" data-food-highlights></div>
+<section class="section two-col">
+  <div>
+    <p class="kicker">Kitchen</p>
+    <h2>Lunch, pizza, pie & mash, carvery.</h2>
+    <p>Lunch is served Monday to Friday, pizzas are available through the week, and selected carvery dates and Manze’s Pie & Mash events can be promoted through the event calendar.</p>
+    <a class="btn primary" href="events.html">See food events</a>
   </div>
+  <div class="notice-board" data-food-highlights></div>
 </section>
-<section class="section section-dark">
-  <div class="wrap">
-    <div class="section-head"><div><p class="eyebrow">Menus</p><h2>Choose what you need</h2></div></div>
-    <div class="cards-four" data-food-menus></div>
-  </div>
+<section class="section dark">
+  <div class="section-title"><div><p class="kicker">Menus</p><h2>Menu areas</h2></div></div>
+  <div class="cards four" data-food-menus></div>
 </section>
-<section class="section">
-  <div class="wrap times-grid">
-    <div class="sign-panel"><h2>Opening times</h2><div data-opening-times></div></div>
-    <div class="sign-panel"><h2>Food serving times</h2><div data-food-times></div></div>
-  </div>
+<section class="section two-col">
+  <div class="time-card"><h2>Opening times</h2><div data-opening-times></div></div>
+  <div class="time-card"><h2>Food serving times</h2><div data-food-times></div></div>
 </section>
 </main>
-  
-<footer class="site-footer">
-  <div class="wrap footer-grid">
+    <footer class="footer">
+  <div class="footer-inner">
     <div>
-      <div class="footer-brand">
-        <img src="assets/logo/alma-building.png" alt="">
-        <strong>THE ALMA</strong>
-      </div>
+      <div class="footer-brand">THE ALMA</div>
       <p>Sidcup’s only traditional old school pub with Soul.</p>
     </div>
     <div>
@@ -92,16 +70,13 @@
       <p><a href="tel:07923009864">07923 009 864</a><br><a href="mailto:info@thealmapub.co.uk">info@thealmapub.co.uk</a></p>
     </div>
     <div>
-      <h3>Update in Phase 2</h3>
-      <p>News, events, menus and gallery content are editable through Pages CMS.</p>
+      <h3>Useful links</h3>
+      <p><a href="events.html">What’s On</a><br><a href="venue-hire.html">Venue Hire</a><br><a href="food-drink.html">Food & Drink</a></p>
     </div>
   </div>
-  <div class="wrap footer-bottom">
-    <span>© The Alma, Sidcup</span>
-    <span>Website by The Alma Group</span>
-  </div>
+  <div class="footer-bottom">© The Alma, Sidcup · Website by The Alma Group</div>
 </footer>
-
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
