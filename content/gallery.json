@@ -1,6 +1,11 @@
 {
   "images": [
     {
+      "src": "assets/images/gallery/evening-mood-1780990450735.jpg",
+      "alt": "Garden in the evening",
+      "label": "Evening Mood Light"
+    },
+    {
       "src": "assets/logo/alma-building.png",
       "alt": "Illustration of The Alma pub exterior",
       "label": "The Alma, Sidcup"
