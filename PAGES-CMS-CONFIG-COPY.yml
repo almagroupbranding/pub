@@ -139,3 +139,35 @@ content:
           - name: label
             label: Caption
             type: string
+
+
+  - name: function_availability
+    label: Function Room Availability
+    type: file
+    path: content/function-availability.json
+    fields:
+      - name: booked
+        label: Booked Dates
+        type: object
+        list: true
+        fields:
+          - name: date
+            label: Date
+            type: date
+          - name: reason
+            label: Reason
+            type: string
+      - name: pending
+        label: Pending Dates
+        type: object
+        list: true
+        fields:
+          - name: date
+            label: Date
+            type: date
+          - name: reason
+            label: Reason
+            type: string
+      - name: notes
+        label: Notes
+        type: text

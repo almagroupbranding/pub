@@ -1,0 +1,19 @@
+{
+  "booked": [
+    {
+      "date": "2026-06-21",
+      "reason": "Father’s Day Carvery"
+    },
+    {
+      "date": "2026-07-04",
+      "reason": "Private function"
+    }
+  ],
+  "pending": [
+    {
+      "date": "2026-07-11",
+      "reason": "Enquiry under review"
+    }
+  ],
+  "notes": "AI function enquiry checks this file plus content/events.json. Edit via GitHub or Pages CMS later."
+}

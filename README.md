@@ -28,3 +28,8 @@ The design is intentionally less fussy:
 - clear event cards
 - clear venue hire path
 - content managed through JSON files
+
+
+## AI Admin Added
+
+See `AI-ADMIN-SETUP.md` for the admin AI writer, secure Worker backend, and AI function enquiry setup.

@@ -1,0 +1,12 @@
+name = "alma-ai-admin"
+main = "src/index.js"
+compatibility_date = "2026-06-01"
+
+[vars]
+SITE_ORIGIN = "https://almagroupbranding.github.io"
+GITHUB_OWNER = "almagroupbranding"
+GITHUB_REPO = "pub"
+GITHUB_BRANCH = "main"
+OWNER_EMAIL = "info@thealmapub.co.uk"
+FROM_EMAIL = "The Alma <events@your-verified-domain.co.uk>"
+OPENAI_MODEL = "gpt-4.1-mini"
