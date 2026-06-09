@@ -1,6 +1,11 @@
 {
   "images": [
     {
+      "src": "assets/images/gallery/the-alma-pub-photo-1780990482380.jpg",
+      "alt": "A front exterior view of the pub.",
+      "label": "Front photo"
+    },
+    {
       "src": "assets/images/gallery/evening-mood-1780990450735.jpg",
       "alt": "Garden in the evening",
       "label": "Evening Mood Light"
