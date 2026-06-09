@@ -20,8 +20,8 @@
 <main class="setup-page">
   <section class="setup-card">
     <p class="kicker">Simple setup</p>
-    <h1>Make the AI work</h1>
-    <p>The pages are uploaded, but they need a Cloudflare Worker URL before login and chat can work.</p>
+    <h1>Make the AI work without OpenAI billing</h1>
+    <p>The pages are uploaded, but they need the Cloudflare Worker URL and a Workers AI binding named AI.</p>
   </section>
   <section class="setup-card">
     <h2>1. Your password</h2>
@@ -33,7 +33,7 @@
     <p>After deploying the Worker, edit <span class="code">site-config.js</span> and replace the placeholder URL.</p>
   </section>
   <section class="setup-card">
-    <h2>3. Full instructions</h2>
+    <h2>3. Add Workers AI binding</h2><p>In Cloudflare Worker settings, add a Workers AI binding named <span class="code">AI</span>.</p></section><section class="setup-card"><h2>4. Full instructions</h2>
     <p>Open <span class="code">AI-ADMIN-SETUP.md</span> in GitHub for the full checklist.</p>
   </section>
 </main>

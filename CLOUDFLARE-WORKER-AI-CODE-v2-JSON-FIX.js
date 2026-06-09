@@ -1,5 +1,5 @@
 /**
- * The Alma AI Admin + Gallery Manager Worker
+ * The Alma AI Admin + Function Enquiry Worker
  * Cloudflare Workers AI version — no OpenAI API key needed.
  *
  * Required Cloudflare binding:
@@ -9,9 +9,7 @@
  * - ADMIN_PASSWORD
  * - SESSION_SECRET
  * - GITHUB_TOKEN
- *
- * Optional for function enquiry emails:
- * - RESEND_API_KEY
+ * - RESEND_API_KEY optional, only needed for function enquiry email
  *
  * Required variables:
  * - SITE_ORIGIN = https://almagroupbranding.github.io
@@ -34,9 +32,8 @@ export default {
       if (url.pathname === "/api/health") {
         return withCors(json({
           ok: true,
-          worker: "alma-ai-admin-gallery",
+          worker: "alma-ai-admin",
           aiBinding: Boolean(env.AI),
-          hasGithubToken: Boolean(env.GITHUB_TOKEN),
           model: env.CLOUDFLARE_AI_MODEL || "@cf/meta/llama-3.1-8b-instruct-fast"
         }), request, env);
       }
@@ -52,21 +49,6 @@ export default {
       if (url.pathname === "/api/admin/publish-update" && request.method === "POST") {
         await requireAdmin(request, env);
         return withCors(await publishUpdate(request, env), request, env);
-      }
-
-      if (url.pathname === "/api/admin/gallery-list" && request.method === "GET") {
-        await requireAdmin(request, env);
-        return withCors(await galleryList(env), request, env);
-      }
-
-      if (url.pathname === "/api/admin/gallery-upload" && request.method === "POST") {
-        await requireAdmin(request, env);
-        return withCors(await galleryUpload(request, env), request, env);
-      }
-
-      if (url.pathname === "/api/admin/gallery-delete" && request.method === "POST") {
-        await requireAdmin(request, env);
-        return withCors(await galleryDelete(request, env), request, env);
       }
 
       if (url.pathname === "/api/function-chat" && request.method === "POST") {
@@ -126,11 +108,11 @@ async function logout() {
 async function requireAdmin(request, env) {
   const cookie = request.headers.get("Cookie") || "";
   const match = cookie.match(/(?:^|;\s*)alma_admin=([^;]+)/);
-  if (!match) throw Object.assign(new Error("Not authorised. Please sign in again."), {status: 401});
+  if (!match) throw Object.assign(new Error("Not authorised"), {status: 401});
 
   const payload = await verifySession(match[1], env.SESSION_SECRET);
   if (!payload || payload.sub !== "admin" || payload.exp < Math.floor(Date.now() / 1000)) {
-    throw Object.assign(new Error("Session expired. Please sign in again."), {status: 401});
+    throw Object.assign(new Error("Session expired"), {status: 401});
   }
   return payload;
 }
@@ -174,8 +156,6 @@ function atobUrl(str) {
   return decodeURIComponent(escape(atob(str)));
 }
 
-/* ------------------------- AI updates ------------------------- */
-
 async function draftUpdate(request, env) {
   const {type, prompt} = await request.json();
   if (!["event", "news"].includes(type)) throw Object.assign(new Error("Invalid update type"), {status: 400});
@@ -196,6 +176,7 @@ async function draftUpdate(request, env) {
   try {
     parsed = parseJsonFromText(ai);
   } catch (err) {
+    // Cloudflare free models sometimes answer in prose. This fallback keeps the tool usable.
     parsed = localDraftFallback(type, prompt);
     parsed.warning = "AI did not return clean JSON, so a safe local draft was created. Please check it before publishing.";
   }
@@ -205,6 +186,88 @@ async function draftUpdate(request, env) {
   parsed.social_caption = parsed.social_caption || makeSocialCaption(parsed.payload);
   return json(parsed);
 }
+
+
+function normaliseDraftPayload(type, payload, originalPrompt) {
+  const today = new Date().toISOString().slice(0,10);
+  if (type === "event") {
+    return {
+      date: payload.date || inferDate(originalPrompt) || today,
+      title: payload.title || inferTitle(originalPrompt) || "Event at The Alma",
+      type: payload.type || inferEventType(originalPrompt) || "Event",
+      summary: payload.summary || makeEventSummary(originalPrompt),
+      cta: payload.cta || "Join us"
+    };
+  }
+  return {
+    date: payload.date || today,
+    title: payload.title || inferTitle(originalPrompt) || "News from The Alma",
+    summary: payload.summary || makeNewsSummary(originalPrompt)
+  };
+}
+
+function localDraftFallback(type, prompt) {
+  const payload = normaliseDraftPayload(type, {}, prompt);
+  return {
+    type,
+    payload,
+    social_caption: makeSocialCaption(payload)
+  };
+}
+
+function inferTitle(prompt) {
+  const p = String(prompt || "").toLowerCase();
+  if (p.includes("karaoke")) return "Karaoke Night";
+  if (p.includes("quiz")) return "Pub Quiz Night";
+  if (p.includes("dj")) return "Friday Night DJ";
+  if (p.includes("comedy")) return "Comedy Night";
+  if (p.includes("carvery")) return "Carvery at The Alma";
+  if (p.includes("singer") || p.includes("singalong")) return "Live Singing at The Alma";
+  return "";
+}
+
+function inferEventType(prompt) {
+  const p = String(prompt || "").toLowerCase();
+  if (p.includes("karaoke")) return "Karaoke";
+  if (p.includes("quiz")) return "Quiz";
+  if (p.includes("dj") || p.includes("singer") || p.includes("music")) return "Music";
+  if (p.includes("comedy")) return "Entertainment";
+  if (p.includes("carvery") || p.includes("food")) return "Food";
+  return "Event";
+}
+
+function inferDate(prompt) {
+  // Keep it simple and safe: if no exact YYYY-MM-DD is given, use today's date.
+  // The owner can edit the date before publishing.
+  const match = String(prompt || "").match(/\b(20\d{2})-(\d{2})-(\d{2})\b/);
+  return match ? match[0] : "";
+}
+
+function makeEventSummary(prompt) {
+  const type = inferEventType(prompt);
+  const lower = String(prompt || "").toLowerCase();
+  let time = "";
+  const timeMatch = lower.match(/\b(\d{1,2})(?::(\d{2}))?\s*(am|pm)\b/);
+  if (timeMatch) time = ` from ${timeMatch[0]}`;
+  if (type === "Karaoke") return `Join us for a proper Alma karaoke night${time}. Free entry, warm atmosphere and plenty of familiar faces.`;
+  if (type === "Quiz") return `Join us for a lively Alma quiz night${time}. Bring a team, settle in and enjoy a proper local evening.`;
+  if (type === "Music") return `Enjoy a proper Alma music night${time}. Good company, familiar faces and a warm local atmosphere.`;
+  if (type === "Food") return `Join us for a special food event at The Alma. Booking is recommended so the kitchen can plan properly.`;
+  return `Join us at The Alma for a warm local event with good company and a proper pub atmosphere.`;
+}
+
+function makeNewsSummary(prompt) {
+  return `A quick update from The Alma: ${String(prompt || "").replace(/\s+/g, " ").slice(0, 140)}.`;
+}
+
+function makeSocialCaption(payload) {
+  if (!payload) return "";
+  if (payload.type === "Karaoke" || String(payload.title || "").toLowerCase().includes("karaoke")) {
+    return "Karaoke is back at The Alma. Come down, grab a drink and enjoy a proper local night with us.";
+  }
+  return `${payload.title || "News from The Alma"} — ${payload.summary || "Join us at The Alma."}`;
+}
+
 
 async function publishUpdate(request, env) {
   const {type, payload} = await request.json();
@@ -217,119 +280,13 @@ async function publishUpdate(request, env) {
   const file = await githubGet(env, path);
   const data = JSON.parse(file.content);
   data[key] = data[key] || [];
-
-  const exists = data[key].some(item =>
-    String(item.title || "").toLowerCase() === String(payload.title || "").toLowerCase()
-    && String(item.date || "") === String(payload.date || "")
-  );
-  if (!exists) data[key].unshift(payload);
+  data[key].unshift(payload);
 
   if (key === "events") data[key].sort((a, b) => String(a.date).localeCompare(String(b.date)));
 
   const commit = await githubPut(env, path, JSON.stringify(data, null, 2) + "\n", file.sha, `AI ${type} update: ${payload.title}`);
-  return json({ok: true, path, title: payload.title, commit: commit.commit?.sha || commit.content?.sha || "created"});
+  return json({ok: true, commit: commit.commit?.sha || commit.content?.sha || "created"});
 }
-
-/* ------------------------- Gallery management ------------------------- */
-
-async function galleryList(env) {
-  const file = await githubGet(env, "content/gallery.json");
-  const data = JSON.parse(file.content || "{}");
-  const images = Array.isArray(data.images) ? data.images : [];
-  return json({ok: true, images});
-}
-
-async function galleryUpload(request, env) {
-  const body = await request.json();
-  const {imageBase64, filename, caption, alt, aiHelp} = body;
-
-  if (!imageBase64 || !imageBase64.includes(",")) {
-    throw Object.assign(new Error("No image received. Choose a JPG, PNG or WebP image."), {status: 400});
-  }
-
-  const cleanCaption = String(caption || "").trim() || "The Alma";
-  let cleanAlt = String(alt || "").trim();
-
-  if (aiHelp && !cleanAlt) {
-    cleanAlt = await draftAltText(env, cleanCaption);
-  }
-  if (!cleanAlt) cleanAlt = cleanCaption;
-
-  const ext = ".jpg"; // Browser standardises to JPEG before upload.
-  const safeName = slugify(filename || cleanCaption || "alma-gallery") + "-" + Date.now() + ext;
-  const assetPath = `assets/images/gallery/${safeName}`;
-
-  const base64 = imageBase64.split(",").pop();
-
-  // Upload/commit image file
-  await githubCreateOrUpdate(env, assetPath, base64, null, `Gallery image upload: ${cleanCaption}`, true);
-
-  // Update gallery JSON
-  const galleryPath = "content/gallery.json";
-  const file = await githubGet(env, galleryPath);
-  const data = JSON.parse(file.content || "{}");
-  data.images = Array.isArray(data.images) ? data.images : [];
-
-  const src = assetPath;
-  data.images.unshift({
-    src,
-    alt: cleanAlt,
-    label: cleanCaption
-  });
-
-  const commit = await githubPut(env, galleryPath, JSON.stringify(data, null, 2) + "\n", file.sha, `Gallery updated: ${cleanCaption}`);
-
-  return json({
-    ok: true,
-    image: {src, alt: cleanAlt, label: cleanCaption},
-    commit: commit.commit?.sha || commit.content?.sha || "created"
-  });
-}
-
-async function galleryDelete(request, env) {
-  const {src} = await request.json();
-  if (!src) throw Object.assign(new Error("Missing image src"), {status: 400});
-
-  const galleryPath = "content/gallery.json";
-  const file = await githubGet(env, galleryPath);
-  const data = JSON.parse(file.content || "{}");
-  data.images = Array.isArray(data.images) ? data.images : [];
-
-  const before = data.images.length;
-  data.images = data.images.filter(img => img.src !== src);
-
-  if (data.images.length === before) {
-    throw Object.assign(new Error("Image was not found in gallery.json"), {status: 404});
-  }
-
-  const commit = await githubPut(env, galleryPath, JSON.stringify(data, null, 2) + "\n", file.sha, `Gallery image removed: ${src}`);
-
-  // Optional: also delete the actual asset if it is in assets/images/gallery/
-  if (String(src).startsWith("assets/images/gallery/")) {
-    try {
-      const asset = await githubGet(env, src);
-      await githubDelete(env, src, asset.sha, `Gallery asset deleted: ${src}`);
-    } catch (err) {
-      // Do not fail if only JSON removal worked.
-    }
-  }
-
-  return json({ok: true, removed: src, commit: commit.commit?.sha || commit.content?.sha || "updated"});
-}
-
-async function draftAltText(env, caption) {
-  try {
-    const ai = await runCloudflareAI(env, [
-      {role: "system", content: "Write one concise, factual alt text sentence for a pub website image. Return plain text only. Do not invent visual details not provided."},
-      {role: "user", content: `Caption/context: ${caption}`}
-    ]);
-    return String(ai || "").replace(/^["']|["']$/g, "").slice(0, 160);
-  } catch (_) {
-    return caption;
-  }
-}
-
-/* ------------------------- Function enquiry ------------------------- */
 
 async function functionChat(request, env) {
   const {messages = []} = await request.json();
@@ -367,8 +324,6 @@ Public events JSON: ${JSON.stringify(publicEvents.events || [])}`;
   return json({complete: false, reply: parsed.reply || "Could you tell me the date, event type and rough guest numbers?"});
 }
 
-/* ------------------------- AI helpers ------------------------- */
-
 async function runCloudflareAI(env, messages) {
   if (!env.AI) throw Object.assign(new Error("Workers AI binding missing. Add a Workers AI binding named AI in Cloudflare."), {status: 500});
 
@@ -405,85 +360,7 @@ function parseJsonFromText(text) {
   throw new Error("AI did not return usable JSON. Try again with a clearer instruction.");
 }
 
-function normaliseDraftPayload(type, payload, originalPrompt) {
-  const today = new Date().toISOString().slice(0,10);
-  if (type === "event") {
-    return {
-      date: payload.date || inferDate(originalPrompt) || today,
-      title: payload.title || inferTitle(originalPrompt) || "Event at The Alma",
-      type: payload.type || inferEventType(originalPrompt) || "Event",
-      summary: payload.summary || makeEventSummary(originalPrompt),
-      cta: payload.cta || "Join us"
-    };
-  }
-  return {
-    date: payload.date || today,
-    title: payload.title || inferTitle(originalPrompt) || "News from The Alma",
-    summary: payload.summary || makeNewsSummary(originalPrompt)
-  };
-}
-
-function localDraftFallback(type, prompt) {
-  const payload = normaliseDraftPayload(type, {}, prompt);
-  return {type, payload, social_caption: makeSocialCaption(payload)};
-}
-
-function inferTitle(prompt) {
-  const p = String(prompt || "").toLowerCase();
-  if (p.includes("karaoke")) return "Karaoke Night";
-  if (p.includes("quiz")) return "Pub Quiz Night";
-  if (p.includes("dj")) return "Friday Night DJ";
-  if (p.includes("comedy")) return "Comedy Night";
-  if (p.includes("carvery")) return "Carvery at The Alma";
-  if (p.includes("singer") || p.includes("singalong")) return "Live Singing at The Alma";
-  return "";
-}
-
-function inferEventType(prompt) {
-  const p = String(prompt || "").toLowerCase();
-  if (p.includes("karaoke")) return "Karaoke";
-  if (p.includes("quiz")) return "Quiz";
-  if (p.includes("dj") || p.includes("singer") || p.includes("music")) return "Music";
-  if (p.includes("comedy")) return "Entertainment";
-  if (p.includes("carvery") || p.includes("food")) return "Food";
-  return "Event";
-}
-
-function inferDate(prompt) {
-  const match = String(prompt || "").match(/\b(20\d{2})-(\d{2})-(\d{2})\b/);
-  return match ? match[0] : "";
-}
-
-function makeEventSummary(prompt) {
-  const type = inferEventType(prompt);
-  const lower = String(prompt || "").toLowerCase();
-  let time = "";
-  const timeMatch = lower.match(/\b(\d{1,2})(?::(\d{2}))?\s*(am|pm)\b/);
-  if (timeMatch) time = ` from ${timeMatch[0]}`;
-  if (type === "Karaoke") return `Join us for a proper Alma karaoke night${time}. Free entry, warm atmosphere and plenty of familiar faces.`;
-  if (type === "Quiz") return `Join us for a lively Alma quiz night${time}. Bring a team, settle in and enjoy a proper local evening.`;
-  if (type === "Music") return `Enjoy a proper Alma music night${time}. Good company, familiar faces and a warm local atmosphere.`;
-  if (type === "Food") return `Join us for a special food event at The Alma. Booking is recommended so the kitchen can plan properly.`;
-  return `Join us at The Alma for a warm local event with good company and a proper pub atmosphere.`;
-}
-
-function makeNewsSummary(prompt) {
-  return `A quick update from The Alma: ${String(prompt || "").replace(/\s+/g, " ").slice(0, 140)}.`;
-}
-
-function makeSocialCaption(payload) {
-  if (!payload) return "";
-  if (payload.type === "Karaoke" || String(payload.title || "").toLowerCase().includes("karaoke")) {
-    return "Karaoke is back at The Alma. Come down, grab a drink and enjoy a proper local night with us.";
-  }
-  return `${payload.title || "News from The Alma"} — ${payload.summary || "Join us at The Alma."}`;
-}
-
-/* ------------------------- GitHub helpers ------------------------- */
-
 async function githubGet(env, path) {
-  if (!env.GITHUB_TOKEN) throw Object.assign(new Error("GITHUB_TOKEN is missing in Cloudflare secrets."), {status: 500});
-
   const url = `https://api.github.com/repos/${env.GITHUB_OWNER}/${env.GITHUB_REPO}/contents/${path}?ref=${env.GITHUB_BRANCH || "main"}`;
   const res = await fetch(url, {headers: githubHeaders(env)});
   const data = await res.json();
@@ -501,45 +378,19 @@ async function safeGetGithubJson(env, path, fallback) {
 }
 
 async function githubPut(env, path, content, sha, message) {
-  return githubCreateOrUpdate(env, path, encodeBase64Utf8(content), sha, message, true);
-}
-
-async function githubCreateOrUpdate(env, path, base64Content, sha, message, alreadyBase64 = false) {
-  if (!env.GITHUB_TOKEN) throw Object.assign(new Error("GITHUB_TOKEN is missing in Cloudflare secrets."), {status: 500});
-
   const url = `https://api.github.com/repos/${env.GITHUB_OWNER}/${env.GITHUB_REPO}/contents/${path}`;
-  const body = {
-    message,
-    content: alreadyBase64 ? base64Content : encodeBase64Utf8(base64Content),
-    branch: env.GITHUB_BRANCH || "main"
-  };
-  if (sha) body.sha = sha;
-
   const res = await fetch(url, {
     method: "PUT",
     headers: githubHeaders(env),
-    body: JSON.stringify(body)
-  });
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.message || `GitHub update failed for ${path}`);
-  return data;
-}
-
-async function githubDelete(env, path, sha, message) {
-  if (!env.GITHUB_TOKEN) throw Object.assign(new Error("GITHUB_TOKEN is missing in Cloudflare secrets."), {status: 500});
-
-  const url = `https://api.github.com/repos/${env.GITHUB_OWNER}/${env.GITHUB_REPO}/contents/${path}`;
-  const res = await fetch(url, {
-    method: "DELETE",
-    headers: githubHeaders(env),
     body: JSON.stringify({
       message,
+      content: encodeBase64Utf8(content),
       sha,
       branch: env.GITHUB_BRANCH || "main"
     })
   });
   const data = await res.json();
-  if (!res.ok) throw new Error(data.message || `GitHub delete failed for ${path}`);
+  if (!res.ok) throw new Error(data.message || `GitHub update failed for ${path}`);
   return data;
 }
 
@@ -564,17 +415,6 @@ function encodeBase64Utf8(str) {
   bytes.forEach(b => bin += String.fromCharCode(b));
   return btoa(bin);
 }
-
-function slugify(value) {
-  return String(value || "alma")
-    .toLowerCase()
-    .replace(/\.[a-z0-9]+$/i, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .slice(0, 58) || "alma-gallery";
-}
-
-/* ------------------------- Email helpers ------------------------- */
 
 async function sendFunctionEmail(env, enquiry) {
   const subject = `Function enquiry: ${enquiry.event_type || "The Alma"} — ${enquiry.date || "date TBC"}`;
