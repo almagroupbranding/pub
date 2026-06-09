@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Venue Hire | The Alma Sidcup</title>
+  <meta name="description" content="Private hire and function room enquiries for The Alma Sidcup.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="">
+  <a class="skip-link" href="#main">Skip to content</a>
+  
+<header class="site-header">
+  <div class="wrap header-grid">
+    <a class="logo-lockup" href="index.html" aria-label="The Alma home">
+      <img src="assets/logo/alma-sign-logo.png" alt="The Alma Sidcup Kent">
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="siteNav">Menu</button>
+    <div id="siteNav">
+      
+<nav class="site-nav" aria-label="Main navigation">
+  <a href="index.html">Home</a>
+  <a href="food-drink.html">Food & Drink</a>
+  <a href="events.html">Events</a>
+  <a href="venue-hire.html">Venue Hire</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="about.html">About</a>
+  <a class="nav-cta" href="contact.html">Contact</a>
+</nav>
+
+    </div>
+  </div>
+</header>
+
+  <main id="main">
+    
+<section class="page-hero venue-hero">
+  <div class="wrap sign-panel">
+    <p class="eyebrow">Private hire</p>
+    <h1>Function room enquiries</h1>
+    <p class="lead">A better enquiry process for suitable gatherings, private meals, wakes, business events and well-managed celebrations.</p>
+    <div class="button-row">
+      <a class="button primary" href="#enquiry">Start enquiry</a>
+      <a class="button secondary" href="events.html">Check public events</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap split">
+    <div>
+      <p class="eyebrow">Venue fit</p>
+      <h2>Designed to protect the pub and save staff time.</h2>
+      <p>The form asks the right questions before anyone emails a vague request. It helps the owner approve suitable events and politely filters poor-fit enquiries.</p>
+    </div>
+    <div class="feature-list">
+      <article><strong>Good fit</strong><span>Adult celebrations, wakes, private dining, community groups and business events.</span></article>
+      <article><strong>May be declined</strong><span>18th birthdays, children’s parties and loud late-night party enquiries.</span></article>
+      <article><strong>Approval only</strong><span>No booking is confirmed until The Alma reviews and confirms the details.</span></article>
+    </div>
+  </div>
+</section>
+
+<section class="section section-paper" id="enquiry">
+  <div class="wrap form-wrap">
+    <div class="sign-panel">
+      <p class="eyebrow">Enquiry</p>
+      <h2>Tell us about your event</h2>
+      <p>Phase 1 sends the enquiry by email. Phase 2 can connect this to a live calendar and owner approval workflow.</p>
+    </div>
+    <form class="event-form sign-panel" id="eventForm">
+      <label>Event type
+        <select name="event_type" required>
+          <option value="">Please choose…</option>
+          <option>Private dining</option>
+          <option>Wake / memorial gathering</option>
+          <option>Corporate meeting / networking</option>
+          <option>Engagement / anniversary</option>
+          <option>Birthday celebration, 21+</option>
+          <option>Community group / talk</option>
+          <option>18th birthday party</option>
+          <option>Children’s party</option>
+          <option>Other</option>
+        </select>
+      </label>
+      <div class="form-grid">
+        <label>Preferred date <input type="date" name="date" required></label>
+        <label>Guest numbers <input type="number" name="guests" min="1" max="120" required></label>
+      </div>
+      <div class="form-grid">
+        <label>Start time <input type="time" name="start_time" required></label>
+        <label>Finish time <input type="time" name="finish_time" required></label>
+      </div>
+      <label>Event tone
+        <select name="tone" required>
+          <option value="">Please choose…</option>
+          <option>Quiet and respectful</option>
+          <option>Warm and sociable</option>
+          <option>Professional / business</option>
+          <option>Elegant celebration</option>
+          <option>Loud party atmosphere</option>
+        </select>
+      </label>
+      <label>Food requirement
+        <select name="food" required>
+          <option value="">Please choose…</option>
+          <option>Sit-down meal</option>
+          <option>Buffet / grazing table</option>
+          <option>Canapés / light bites</option>
+          <option>Drinks only</option>
+          <option>Not sure yet</option>
+        </select>
+      </label>
+      <div class="form-grid">
+        <label>Name <input name="name" required></label>
+        <label>Phone <input name="phone" type="tel" required></label>
+      </div>
+      <label>Email <input name="email" type="email" required></label>
+      <label>Details <textarea name="message" rows="5" placeholder="Tell us what you’re planning, timings, food, music, layout and budget guidance."></textarea></label>
+      <div class="form-message" hidden></div>
+      <button class="button primary full" type="submit">Send enquiry</button>
+    </form>
+  </div>
+</section>
+
+  </main>
+  
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <img class="footer-logo" src="assets/logo/alma-sign-logo.png" alt="The Alma">
+      <p>Sidcup’s only traditional old school pub with Soul.</p>
+    </div>
+    <div>
+      <h3>Visit</h3>
+      <p>10 Alma Road<br>Sidcup, Kent, DA14 4EA</p>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <p><a href="tel:07923009864">07923 009 864</a><br><a href="mailto:info@thealmapub.co.uk">info@thealmapub.co.uk</a></p>
+    </div>
+    <div>
+      <h3>Quick links</h3>
+      <p><a href="venue-hire.html">Function room enquiries</a><br><a href="events.html">What’s on</a><br><a href="food-drink.html">Food & drink</a></p>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© The Alma, Sidcup</span>
+    <span>Phase 1 rebuild by The Alma Group</span>
+  </div>
+</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

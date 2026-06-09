@@ -1,0 +1,73 @@
+{
+  "name": "The Alma",
+  "tagline": "Sidcup’s only traditional old school pub with Soul.",
+  "intro": "A proper old-school Sidcup pub with soul at its heart — from the owners, the staff and of course the guests.",
+  "address": "10 Alma Road, Sidcup, Kent, DA14 4EA",
+  "phone": "07923 009 864",
+  "email": "info@thealmapub.co.uk",
+  "social": {
+    "facebook": "https://www.facebook.com/thealmasidcup",
+    "instagram": "https://www.instagram.com/thealmasidcup"
+  },
+  "opening_times": [
+    [
+      "Mon",
+      "11:30 - 21:00"
+    ],
+    [
+      "Tue",
+      "11:30 - 21:00"
+    ],
+    [
+      "Wed",
+      "11:30 - 22:00"
+    ],
+    [
+      "Thu",
+      "11:30 - 23:00"
+    ],
+    [
+      "Fri",
+      "11:30 - 00:00"
+    ],
+    [
+      "Sat",
+      "12:00 - 00:00"
+    ],
+    [
+      "Sun",
+      "12:00 - 21:00"
+    ]
+  ],
+  "food_times": [
+    [
+      "Mon",
+      "12:00 - 14:30 / 14:30 - 20:00"
+    ],
+    [
+      "Tue",
+      "12:00 - 14:30 / 14:30 - 20:00"
+    ],
+    [
+      "Wed",
+      "12:00 - 14:30 / 14:30 - 20:00"
+    ],
+    [
+      "Thu",
+      "12:00 - 14:30 / 14:30 - 20:00"
+    ],
+    [
+      "Fri",
+      "12:00 - 14:30 / 14:30 - 20:00"
+    ],
+    [
+      "Sat",
+      "12:00 - 14:30 / 14:30 - 20:00"
+    ],
+    [
+      "Sun",
+      "12:00 - 14:30 / 14:30 - 19:00"
+    ]
+  ],
+  "notice": "There is a 15 minute drinking-up time after the last bell has been rung."
+}

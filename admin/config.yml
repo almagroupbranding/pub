@@ -1,0 +1,22 @@
+# Phase 2 dashboard placeholder
+# Recommended: Pages CMS or CloudCannon.
+# The content is already stored in /content/*.json so it can be connected later.
+
+media: assets/images
+content:
+  - name: events
+    label: Events
+    type: file
+    path: content/events.json
+  - name: news
+    label: News
+    type: file
+    path: content/news.json
+  - name: gallery
+    label: Gallery
+    type: file
+    path: content/gallery.json
+  - name: settings
+    label: Site Settings
+    type: file
+    path: content/settings.json
