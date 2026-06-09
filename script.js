@@ -7,6 +7,9 @@ async function getJSON(path){
   if(!res.ok) throw new Error(path);
   return res.json();
 }
+function unwrap(data, key){
+  return Array.isArray(data) ? data : (data[key] || []);
+}
 function formatDate(iso){
   const d = new Date(iso + "T12:00:00");
   return {
@@ -18,7 +21,8 @@ function formatDate(iso){
 async function renderEvents(){
   const mounts = $$("[data-events-limit]");
   if(!mounts.length) return;
-  const events = await getJSON("content/events.json");
+  const data = await getJSON("content/events.json");
+  const events = unwrap(data, "events");
   mounts.forEach(mount => {
     const limit = Number(mount.dataset.eventsLimit || 99);
     mount.innerHTML = events.slice(0, limit).map(ev => {
@@ -26,10 +30,10 @@ async function renderEvents(){
       return `<article class="event-card">
         <div class="event-date"><span>${date.mon}</span><strong>${date.day}</strong></div>
         <div class="body">
-          <span class="event-type">${ev.type}</span>
+          <span class="event-type">${ev.type || "Event"}</span>
           <h3>${ev.title}</h3>
           <p>${ev.summary}</p>
-          <a href="contact.html">${ev.cta}</a>
+          <a href="contact.html">${ev.cta || "Enquire"}</a>
         </div>
       </article>`;
     }).join("");
@@ -38,28 +42,30 @@ async function renderEvents(){
 async function renderNews(){
   const mount = $("[data-news]");
   if(!mount) return;
-  const news = await getJSON("content/news.json");
+  const data = await getJSON("content/news.json");
+  const news = unwrap(data, "news");
   mount.innerHTML = news.map(item => `<article class="event-card"><div class="body"><span class="event-type">${item.date}</span><h3>${item.title}</h3><p>${item.summary}</p></div></article>`).join("");
 }
 async function renderSettings(){
   const settings = await getJSON("content/settings.json");
   const opening = $("[data-opening-times]");
   const food = $("[data-food-times]");
-  if(opening) opening.innerHTML = settings.opening_times.map(([d,t])=>`<div class="time-row"><strong>${d}</strong><span>${t}</span></div>`).join("") + `<p>${settings.notice}</p>`;
-  if(food) food.innerHTML = settings.food_times.map(([d,t])=>`<div class="time-row"><strong>${d}</strong><span>${t}</span></div>`).join("");
+  if(opening) opening.innerHTML = (settings.opening_times || []).map(([d,t])=>`<div class="time-row"><strong>${d}</strong><span>${t}</span></div>`).join("") + `<p>${settings.notice || ""}</p>`;
+  if(food) food.innerHTML = (settings.food_times || []).map(([d,t])=>`<div class="time-row"><strong>${d}</strong><span>${t}</span></div>`).join("");
 }
 async function renderFood(){
   const highlights = $("[data-food-highlights]");
   const menus = $("[data-food-menus]");
   if(!highlights && !menus) return;
   const food = await getJSON("content/food.json");
-  if(highlights) highlights.innerHTML = `<ul>${food.highlights.map(x=>`<li>${x}</li>`).join("")}</ul>`;
-  if(menus) menus.innerHTML = food.menus.map(m=>`<article class="mini-card"><h3>${m.title}</h3><p>${m.text}</p></article>`).join("");
+  if(highlights) highlights.innerHTML = `<ul>${(food.highlights || []).map(x=>`<li>${x}</li>`).join("")}</ul>`;
+  if(menus) menus.innerHTML = (food.menus || []).map(m=>`<article class="mini-card"><h3>${m.title}</h3><p>${m.text}</p></article>`).join("");
 }
 async function renderGallery(){
   const mount = $("[data-gallery]");
   if(!mount) return;
-  const items = await getJSON("content/gallery.json");
+  const data = await getJSON("content/gallery.json");
+  const items = unwrap(data, "images");
   mount.innerHTML = items.map(img => `<figure class="gallery-card"><img src="${img.src}" alt="${img.alt}" loading="lazy"><span>${img.label}</span></figure>`).join("");
 }
 function initMenu(){
@@ -88,15 +94,9 @@ function initForm(){
     const subject = encodeURIComponent(`Venue hire enquiry: ${data.event_type || "The Alma"}`);
     window.location.href = `mailto:info@thealmapub.co.uk?subject=${subject}&body=${body}`;
     message.hidden = false;
-    message.textContent = "Your email app should open with the enquiry details. Phase 2 can send this directly through a dashboard/calendar workflow.";
+    message.textContent = "Your email app should open with the enquiry details. Phase 3 can send this directly through a calendar workflow.";
   });
 }
 document.addEventListener("DOMContentLoaded", () => {
-  initMenu();
-  initForm();
-  renderEvents();
-  renderNews();
-  renderSettings();
-  renderFood();
-  renderGallery();
+  initMenu(); initForm(); renderEvents(); renderNews(); renderSettings(); renderFood(); renderGallery();
 });

@@ -1,72 +1,74 @@
-[
-  {
-    "date": "2026-06-12",
-    "title": "Comedy night",
-    "type": "Entertainment",
-    "summary": "A proper evening of laughs at The Alma.",
-    "cta": "View details"
-  },
-  {
-    "date": "2026-06-15",
-    "title": "Mat & JP’s Fun Pub Quiz",
-    "type": "Quiz",
-    "summary": "Fortnightly quiz night. Book ahead for the best tables.",
-    "cta": "Book a table"
-  },
-  {
-    "date": "2026-06-18",
-    "title": "Karaoke nights at The Alma",
-    "type": "Karaoke",
-    "summary": "Fortnightly Thursday karaoke from 8pm.",
-    "cta": "Join us"
-  },
-  {
-    "date": "2026-06-19",
-    "title": "Friday Night DJ",
-    "type": "Music",
-    "summary": "Friday night music from 7:30pm.",
-    "cta": "See what’s on"
-  },
-  {
-    "date": "2026-06-21",
-    "title": "Father’s Day Carvery",
-    "type": "Food",
-    "summary": "A special carvery event. Booking recommended so the kitchen can plan properly.",
-    "cta": "Enquire"
-  },
-  {
-    "date": "2026-06-29",
-    "title": "Mat & JP’s Fun Pub Quiz",
-    "type": "Quiz",
-    "summary": "A lively local quiz night with a proper pub atmosphere.",
-    "cta": "Book a table"
-  },
-  {
-    "date": "2026-07-02",
-    "title": "Karaoke nights at The Alma",
-    "type": "Karaoke",
-    "summary": "Fortnightly Thursday karaoke from 8pm.",
-    "cta": "Join us"
-  },
-  {
-    "date": "2026-07-03",
-    "title": "Friday Night DJ",
-    "type": "Music",
-    "summary": "Friday night music from 7:30pm.",
-    "cta": "See what’s on"
-  },
-  {
-    "date": "2026-07-16",
-    "title": "Karaoke nights at The Alma",
-    "type": "Karaoke",
-    "summary": "Fortnightly Thursday karaoke from 8pm.",
-    "cta": "Join us"
-  },
-  {
-    "date": "2026-07-30",
-    "title": "Karaoke nights at The Alma",
-    "type": "Karaoke",
-    "summary": "Fortnightly Thursday karaoke from 8pm.",
-    "cta": "Join us"
-  }
-]
+{
+  "events": [
+    {
+      "date": "2026-06-12",
+      "title": "Comedy night",
+      "type": "Entertainment",
+      "summary": "A proper evening of laughs at The Alma.",
+      "cta": "View details"
+    },
+    {
+      "date": "2026-06-15",
+      "title": "Mat & JP’s Fun Pub Quiz",
+      "type": "Quiz",
+      "summary": "Fortnightly quiz night. Book ahead for the best tables.",
+      "cta": "Book a table"
+    },
+    {
+      "date": "2026-06-18",
+      "title": "Karaoke nights at The Alma",
+      "type": "Karaoke",
+      "summary": "Fortnightly Thursday karaoke from 8pm.",
+      "cta": "Join us"
+    },
+    {
+      "date": "2026-06-19",
+      "title": "Friday Night DJ",
+      "type": "Music",
+      "summary": "Friday night music from 7:30pm.",
+      "cta": "See what’s on"
+    },
+    {
+      "date": "2026-06-21",
+      "title": "Father’s Day Carvery",
+      "type": "Food",
+      "summary": "A special carvery event. Booking recommended so the kitchen can plan properly.",
+      "cta": "Enquire"
+    },
+    {
+      "date": "2026-06-29",
+      "title": "Mat & JP’s Fun Pub Quiz",
+      "type": "Quiz",
+      "summary": "A lively local quiz night with a proper pub atmosphere.",
+      "cta": "Book a table"
+    },
+    {
+      "date": "2026-07-02",
+      "title": "Karaoke nights at The Alma",
+      "type": "Karaoke",
+      "summary": "Fortnightly Thursday karaoke from 8pm.",
+      "cta": "Join us"
+    },
+    {
+      "date": "2026-07-03",
+      "title": "Friday Night DJ",
+      "type": "Music",
+      "summary": "Friday night music from 7:30pm.",
+      "cta": "See what’s on"
+    },
+    {
+      "date": "2026-07-16",
+      "title": "Karaoke nights at The Alma",
+      "type": "Karaoke",
+      "summary": "Fortnightly Thursday karaoke from 8pm.",
+      "cta": "Join us"
+    },
+    {
+      "date": "2026-07-30",
+      "title": "Karaoke nights at The Alma",
+      "type": "Karaoke",
+      "summary": "Fortnightly Thursday karaoke from 8pm.",
+      "cta": "Join us"
+    }
+  ]
+}

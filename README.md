@@ -1,73 +1,42 @@
-# The Alma — Phase 1 Website Rebuild
+# The Alma — Phase 2 Website Rebuild
 
-This is the Phase 1 static rebuild for the new `/pub` repository.
+This version fixes the visual flow and adds Pages CMS support.
 
-## What this includes
+## What changed
 
-- Full branded static website
-- Home page
-- Food & Drink page
-- Events page
-- Venue Hire enquiry page
-- Gallery
-- About
-- Contact
-- Jobs placeholder
-- Content stored in `/content/*.json`
-- Alma signage-inspired visual identity
-- GitHub Pages-ready
+- Stronger homepage layout with hero, photo card, quick action panel and clearer page flow
+- Better header logo treatment
+- More premium cards and event tiles
+- Less empty space above the fold
+- Pages CMS config added via `.pages.yml`
+- Content JSON reshaped to be easier to manage through a dashboard
 
-## Upload to `/pub`
+## Upload to GitHub
 
-Upload everything in this folder to the root of the new GitHub repository:
+Upload everything to the root of `/pub`, replacing the current files.
 
-```text
-/pub
-├── index.html
-├── food-drink.html
-├── events.html
-├── venue-hire.html
-├── gallery.html
-├── about.html
-├── contact.html
-├── jobs.html
-├── style.css
-├── script.js
-├── assets/
-├── content/
-└── admin/
-```
-
-Then enable GitHub Pages:
-
-Settings → Pages → Deploy from branch → main → /root.
-
-The live URL should become:
+Then refresh:
 
 ```text
 https://almagroupbranding.github.io/pub/
 ```
 
-## Editing content in Phase 1
+## Pages CMS
 
-For now, edit:
+This repo now includes:
 
-- `content/settings.json` for address, times, phone and email
-- `content/events.json` for events
-- `content/news.json` for news updates
-- `content/gallery.json` for gallery images
-- `content/food.json` for food and menu copy
+```text
+.pages.yml
+```
 
-## Phase 2 dashboard
+That lets Pages CMS edit:
 
-Recommended next step: add Pages CMS or CloudCannon so owners can update:
+- `content/settings.json`
+- `content/events.json`
+- `content/news.json`
+- `content/food.json`
+- `content/gallery.json`
 
-- events
-- news
-- offers
-- gallery images
-- opening hours
-- menus
-- venue-hire wording
+## Commercial purpose
 
-This keeps the easy dashboard feel of Useyourlocal, but with a fully branded site.
+The site is built to make The Alma feel better managed, more consistent and more trustworthy before customers arrive. Events and venue hire are more prominent, which should help the team capture better enquiries instead of vague emails.
