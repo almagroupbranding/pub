@@ -1,46 +1,95 @@
 {
   "events": [
     {
-      "date": "2026-06-12",
-      "title": "Comedy Night",
-      "type": "Entertainment",
-      "summary": "A night of proper laughs at The Alma. Arrive early for the best seats.",
-      "cta": "Ask about a table"
-    },
-    {
       "date": "2026-06-15",
       "title": "Mat & JP’s Fun Pub Quiz",
       "type": "Quiz",
-      "summary": "Fortnightly Monday quiz night with a lively local crowd.",
-      "cta": "Join the quiz"
+      "summary": "Fortnightly Monday quiz from 8pm with four rounds, prizes, £50 cash for the winners and proper Alma character.",
+      "cta": "Ask about a table"
     },
     {
       "date": "2026-06-18",
       "title": "Karaoke Night",
       "type": "Karaoke",
-      "summary": "Fortnightly Thursday karaoke from 8pm.",
-      "cta": "See details"
+      "summary": "Hosted by Steve from 8pm. No booking needed, free entry, and a free shot for everyone who gets up to sing.",
+      "cta": "Join the fun"
     },
     {
       "date": "2026-06-19",
-      "title": "Friday Night DJ",
-      "type": "Music",
-      "summary": "Friday night music from 7:30pm.",
-      "cta": "Plan your night"
+      "title": "Father’s Day Carvery",
+      "type": "Food",
+      "summary": "A special Alma carvery date. Book early to avoid missing out.",
+      "cta": "Ask about booking"
     },
     {
       "date": "2026-06-21",
-      "title": "Father’s Day Carvery",
-      "type": "Food",
-      "summary": "A special carvery event. Booking recommended so the kitchen can plan properly.",
-      "cta": "Enquire"
+      "title": "Live Entertainment",
+      "type": "Live music",
+      "summary": "Sunday entertainment at The Alma with familiar faces and a proper local atmosphere.",
+      "cta": "See what’s on"
     },
     {
       "date": "2026-06-29",
       "title": "Mat & JP’s Fun Pub Quiz",
       "type": "Quiz",
-      "summary": "A proper local quiz night in a proper local pub.",
-      "cta": "Ask about a table"
+      "summary": "Four rounds, picture round, Play Your Cards Right and plenty of laughs. Team size up to six.",
+      "cta": "Join the quiz"
+    },
+    {
+      "date": "2026-07-02",
+      "title": "Karaoke Night",
+      "type": "Karaoke",
+      "summary": "Fortnightly Thursday karaoke in the main pub from 8pm, hosted by Steve.",
+      "cta": "Join the fun"
+    },
+    {
+      "date": "2026-07-03",
+      "title": "Friday Night DJ",
+      "type": "DJ",
+      "summary": "Start the weekend at The Alma with Friday night DJ entertainment.",
+      "cta": "Plan your night"
+    },
+    {
+      "date": "2026-07-16",
+      "title": "Karaoke Night",
+      "type": "Karaoke",
+      "summary": "A fortnightly Alma favourite. Sing, watch, laugh and enjoy a proper local night.",
+      "cta": "Join the fun"
+    },
+    {
+      "date": "2026-07-30",
+      "title": "Karaoke Night",
+      "type": "Karaoke",
+      "summary": "Thursday night karaoke with Steve, free entry and a lively Alma crowd.",
+      "cta": "Join the fun"
+    },
+    {
+      "date": "2026-07-31",
+      "title": "Friday Night DJ",
+      "type": "DJ",
+      "summary": "Friday night music and weekend atmosphere at The Alma.",
+      "cta": "Plan your night"
+    },
+    {
+      "date": "2026-08-13",
+      "title": "Karaoke Night",
+      "type": "Karaoke",
+      "summary": "Fortnightly karaoke in the main pub from 8pm. No booking required.",
+      "cta": "Join the fun"
+    },
+    {
+      "date": "2026-08-27",
+      "title": "Karaoke Night",
+      "type": "Karaoke",
+      "summary": "Get your vocal cords ready for another Alma karaoke night.",
+      "cta": "Join the fun"
+    },
+    {
+      "date": "2026-08-28",
+      "title": "Friday Night DJ",
+      "type": "DJ",
+      "summary": "Friday night DJ entertainment at The Alma.",
+      "cta": "Plan your night"
     }
   ]
 }

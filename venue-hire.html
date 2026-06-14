@@ -4,13 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Venue Hire | The Alma Sidcup</title>
-  <meta name="description" content="Private hire and function room enquiries at The Alma Sidcup.">
+  <meta name="description" content="Function room and private hire enquiries for The Alma Sidcup.">
   <meta property="og:image" content="assets/images/social-preview.png">
   <link rel="icon" href="assets/logo/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -22,115 +23,70 @@
   </a>
   <button class="menu-toggle" aria-expanded="false" aria-controls="navPanel">Menu</button>
   <div id="navPanel"><nav class="nav" aria-label="Main navigation">
-  <a href="index.html">Home</a>
-  <a href="food-drink.html">Food & Drink</a>
-  <a href="events.html">Events</a>
-  <a href="venue-hire.html">Venue Hire</a>
-  <a href="gallery.html">Gallery</a>
-  <a href="about.html">About</a>
-  <a class="nav-button" href="contact.html">Contact</a>
-</nav></div>
+    <a href="index.html">Home</a>
+    <a href="food-drink.html">Food & Drink</a>
+    <a href="events.html">Events</a>
+    <a href="venue-hire.html">Venue Hire</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="about.html">About</a>
+    <a class="nav-button" href="contact.html">Contact</a>
+  </nav></div>
 </header>
     <main id="main">
-<section class="page-head">
-  <p class="kicker">Private hire</p>
-  <h1>Function room enquiries</h1>
-  <p class="lead">A better enquiry process for suitable private meals, wakes, business events and well-managed celebrations.</p><div class="actions"><a class="btn primary" href="function-ai.html">Try quick AI enquiry</a><a class="btn secondary" href="#enquiry">Use full form</a></div>
+<section class="page-hero compact">
+  <p class="kicker">Venue hire</p>
+  <h1>Private functions without the back-and-forth.</h1>
+  <p class="lead">Send the useful details first: date, event type, guest numbers, timings and contact details. The owner reviews before anything is confirmed.</p>
 </section>
-<section class="section two-col">
-  <div>
-    <p class="kicker">Venue fit</p>
-    <h2>Protect the pub. Improve the enquiry quality.</h2>
-    <p>The form asks the right questions before anyone sends a vague email. It helps the owner focus on events that suit the room and the pub.</p>
+<section class="section feature">
+  <div class="feature-card burgundy">
+    <p class="kicker">Start here</p>
+    <h2>Quick AI function enquiry</h2>
+    <p>The guided enquiry asks the right questions, checks known event dates and prepares the request for owner approval.</p>
+    <a class="btn light" href="function-ai.html">Start AI enquiry</a>
   </div>
-  <div class="notice-board">
-    <h3>Owner approval required</h3>
-    <p>No booking is confirmed until The Alma reviews the details.</p>
-    <ul>
-      <li>Good fit: private dining, wakes, business events, adult celebrations.</li>
-      <li>May be declined: 18ths, children’s parties, loud late-night parties.</li>
+  <div class="feature-card">
+    <p class="kicker">Good-fit bookings</p>
+    <h2>What works best</h2>
+    <ul class="tick-list">
+      <li>Wakes and respectful gatherings</li>
+      <li>Meetings and local business events</li>
+      <li>Birthdays and celebrations that fit the pub’s atmosphere</li>
+      <li>Private dining and buffet-led events</li>
     </ul>
   </div>
 </section>
-<section class="section tint" id="enquiry">
-  <div class="form-layout">
-    <div>
-      <p class="kicker">Enquiry</p>
-      <h2>Tell us what you’re planning.</h2>
-      <p>This Phase 2 version sends via email. Phase 3 can connect the same journey to a calendar and approval workflow.</p>
-    </div>
-    <form class="form-card" id="eventForm">
-      <label>Event type
-        <select name="event_type" required>
-          <option value="">Please choose…</option>
-          <option>Private dining</option>
-          <option>Wake / memorial gathering</option>
-          <option>Corporate meeting / networking</option>
-          <option>Engagement / anniversary</option>
-          <option>Birthday celebration, 21+</option>
-          <option>Community group / talk</option>
-          <option>18th birthday party</option>
-          <option>Children’s party</option>
-          <option>Other</option>
-        </select>
-      </label>
-      <div class="form-grid">
-        <label>Preferred date <input type="date" name="date" required></label>
-        <label>Guest numbers <input type="number" name="guests" min="1" max="120" required></label>
-      </div>
-      <div class="form-grid">
-        <label>Start time <input type="time" name="start_time" required></label>
-        <label>Finish time <input type="time" name="finish_time" required></label>
-      </div>
-      <label>Event tone
-        <select name="tone" required>
-          <option value="">Please choose…</option>
-          <option>Quiet and respectful</option>
-          <option>Warm and sociable</option>
-          <option>Professional / business</option>
-          <option>Elegant celebration</option>
-          <option>Loud party atmosphere</option>
-        </select>
-      </label>
-      <label>Food requirement
-        <select name="food" required>
-          <option value="">Please choose…</option>
-          <option>Sit-down meal</option>
-          <option>Buffet / grazing table</option>
-          <option>Canapés / light bites</option>
-          <option>Drinks only</option>
-          <option>Not sure yet</option>
-        </select>
-      </label>
-      <div class="form-grid">
-        <label>Name <input name="name" required></label>
-        <label>Phone <input name="phone" type="tel" required></label>
-      </div>
-      <label>Email <input name="email" type="email" required></label>
-      <label>Details <textarea name="message" rows="5" placeholder="Tell us timings, food, music, layout and anything important."></textarea></label>
-      <div class="form-message" hidden></div>
-      <button class="btn primary full" type="submit">Send enquiry</button>
-    </form>
+<section class="section two-col">
+  <div>
+    <p class="kicker">Before confirming</p>
+    <h2>Owner approval protects the pub.</h2>
+  </div>
+  <div class="notice-board">
+    <p>The venue may not be suitable for 18ths, children’s parties, mostly under-21 events or loud late-night party-style bookings. The enquiry tool should politely filter these before they waste staff time.</p>
+    <p class="note">This is not about being unfriendly; it is about protecting the atmosphere regular customers expect.</p>
   </div>
 </section>
-</main>
+    </main>
     <footer class="footer">
   <div class="footer-inner">
     <div>
       <div class="footer-brand">THE ALMA</div>
       <p>Sidcup’s only traditional old school pub with Soul.</p>
+      <p class="small-note">Built to feel consistent with the pub, the signage and the owner-led atmosphere.</p>
     </div>
     <div>
       <h3>Visit</h3>
       <p>10 Alma Road<br>Sidcup, Kent, DA14 4EA</p>
+      <p><a href="https://www.google.com/maps/search/?api=1&query=The+Alma+10+Alma+Road+Sidcup+DA14+4EA">Get directions</a></p>
     </div>
     <div>
       <h3>Contact</h3>
       <p><a href="tel:07923009864">07923 009 864</a><br><a href="mailto:info@thealmapub.co.uk">info@thealmapub.co.uk</a></p>
+      <p><a href="https://wa.me/447923009864">WhatsApp the pub</a></p>
     </div>
     <div>
       <h3>Useful links</h3>
-      <p><a href="events.html">What’s On</a><br><a href="venue-hire.html">Venue Hire</a><br><a href="food-drink.html">Food & Drink</a></p>
+      <p><a href="events.html">What’s On</a><br><a href="venue-hire.html">Venue Hire</a><br><a href="food-drink.html">Food & Drink</a><br><a href="ai-admin.html">AI Admin</a></p>
     </div>
   </div>
   <div class="footer-bottom">© The Alma, Sidcup · Website by The Alma Group</div>

@@ -1,28 +1,50 @@
 {
-  "intro": "All food is freshly cooked and prepared in The Alma’s continued Scores on the Doors 5-star rated kitchen.",
+  "intro": "All food is freshly cooked and prepared in The Alma’s continued Scores on the Doors 5-star rated kitchen. Lunch gets busy, so bookings are recommended while walk-ins remain welcome.",
   "highlights": [
     "Lunch menu Monday to Friday, 12pm–2:30pm",
-    "9” and 10” stone-baked stuffed crust pizzas",
-    "Monthly Manze’s Pie & Mash",
-    "Selected Sunday carvery dates",
-    "Bookings recommended at busy lunch times"
+    "Stuffed crust stone-baked pizzas available through the week",
+    "Monthly Manze’s Pie & Mash events",
+    "Selected Sunday carvery dates including key seasonal days",
+    "Event buffet and BBQ menu options for suitable private bookings"
   ],
   "menus": [
     {
       "title": "Lunch Menu",
-      "text": "Freshly cooked pub lunches, sandwiches, paninis, jacket potatoes, sides and desserts."
+      "text": "Freshly cooked lunchtime pub food, served Monday to Friday from 12pm to 2:30pm."
     },
     {
-      "title": "Pizzas at the Bar",
-      "text": "Stone-baked stuffed crust pizzas, including vegetarian and meat options."
+      "title": "Stuffed Crust Pizzas",
+      "text": "9” and 10” stone-baked stuffed crust pizzas, available most days until the evening kitchen cut-off."
     },
     {
-      "title": "Private Event Buffet",
-      "text": "Buffet options for wakes, meetings, celebrations and private gatherings."
+      "title": "Manze’s Pie & Mash",
+      "text": "A regular Alma favourite served on selected dates. Check the events page for the next sitting."
     },
     {
-      "title": "BBQ Event Menu",
-      "text": "Seasonal outdoor catering for suitable private events."
+      "title": "Sunday Carvery Dates",
+      "text": "Selected carvery events across the year, including Mother’s Day, Easter Sunday, Father’s Day, November and Christmas Day."
+    },
+    {
+      "title": "Function Food",
+      "text": "Buffet and BBQ options for wakes, meetings, celebrations and private gatherings."
+    }
+  ],
+  "source_menu_links": [
+    {
+      "title": "Lunch menu from January 2026",
+      "url": "https://www.thealmapub.co.uk/food-drink/"
+    },
+    {
+      "title": "Event Buffet Menu 2026",
+      "url": "https://www.thealmapub.co.uk/food-drink/"
+    },
+    {
+      "title": "BBQ Event Menu 2026",
+      "url": "https://www.thealmapub.co.uk/food-drink/"
+    },
+    {
+      "title": "Pizza Menu",
+      "url": "https://www.thealmapub.co.uk/food-drink/"
     }
   ]
 }

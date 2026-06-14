@@ -1,6 +1,26 @@
 {
   "images": [
     {
+      "src": "https://useyourlocal.imgix.net/pub/2966/library/IMG_8680.jpeg?auto=format&crop=entropy&fit=crop&h=709&ixlib=php-1.2.1&s=0b538eecd939b3b7b285cdcfb2429c85&w=1140",
+      "alt": "The Alma pub interior and atmosphere",
+      "label": "Traditional old-school local"
+    },
+    {
+      "src": "https://useyourlocal.imgix.net/pub/2966/library/IMG_8347.JPG?auto=format&crop=entropy&fit=crop&h=700&ixlib=php-1.2.1&s=0489dbc65b7ec40140da617df402d727&w=1100",
+      "alt": "Blue tables and seating in The Alma garden",
+      "label": "Award-winning garden seating"
+    },
+    {
+      "src": "https://useyourlocal.imgix.net/pub/2966/library/IMG_0837.jpg?auto=format&crop=entropy&fit=crop&h=700&ixlib=php-1.2.1&s=d026e01ea6ed3d76bbae90bc4031575a&w=1100",
+      "alt": "Sunny garden seating area with plants and bench at The Alma",
+      "label": "Sunny garden corners"
+    },
+    {
+      "src": "https://useyourlocal.imgix.net/pub/2966/library/IMG_0831.jpg?auto=format&crop=entropy&fit=crop&h=700&ixlib=php-1.2.1&s=9363691a198abdd5f38c05dbba32fa7e&w=1100",
+      "alt": "Garden area at The Alma with plants and outdoor seating",
+      "label": "Garden space"
+    },
+    {
       "src": "assets/logo/alma-building.png",
       "alt": "Illustration of The Alma pub exterior",
       "label": "The Alma, Sidcup"

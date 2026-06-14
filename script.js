@@ -75,6 +75,14 @@ async function renderTimes(){
   if(food) food.innerHTML = rows(data.food_times || []);
 }
 
+
+async function renderFacilities(){
+  const mount = $("[data-facilities]");
+  if(!mount) return;
+  const data = await getJSON("content/settings.json");
+  mount.innerHTML = (data.facilities || []).map(item => `<span>${item}</span>`).join("");
+}
+
 async function renderGallery(){
   const mount = $("[data-gallery]");
   if(!mount) return;
@@ -121,4 +129,5 @@ document.addEventListener("DOMContentLoaded", () => {
   renderFood().catch(console.error);
   renderTimes().catch(console.error);
   renderGallery().catch(console.error);
+  renderFacilities().catch(console.error);
 });
