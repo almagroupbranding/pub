@@ -36,7 +36,7 @@
     .drop{border:2px dashed rgba(123,23,48,.4);border-radius:18px;background:#fffaf1;padding:1rem;text-align:center;margin:.7rem 0}
     .preview-img{max-width:260px;max-height:180px;object-fit:cover;border-radius:14px;border:1px solid var(--line);display:block;margin:.8rem 0}
     .gallery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.9rem}
-    .gallery-card img{width:100%;height:150px;object-fit:cover;border-radius:12px;border:1px solid var(--line);background:#fff}
+    .gallery-card img{width:100%;height:150px;object-fit:cover;border-radius:12px;border:1px solid var(--line);background:#fff;display:block}.gallery-card img.broken{object-fit:contain;padding:.7rem}.gallery-path{font-size:.74rem;color:var(--muted);word-break:break-all;margin:.35rem 0 0}
     .gallery-card strong{display:block;margin:.55rem 0 .2rem;color:var(--burgundy)}
     .small{font-size:.9rem;color:var(--muted)}
     @media(max-width:980px){.ai-hero,.ai-grid{grid-template-columns:1fr}.gallery-grid{grid-template-columns:1fr 1fr}}
@@ -170,6 +170,39 @@ function setStatus(id, text){ $(id).textContent = text || ""; }
 function escapeHtml(str){
   return String(str || "").replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
 }
+
+const GITHUB_RAW_BASE = "https://raw.githubusercontent.com/almagroupbranding/pub/main/";
+
+function imageForAdmin(src){
+  const value = String(src || "").trim();
+  if(!value) return "";
+  if(value.startsWith("data:")) return value;
+  if(/^https?:\/\//i.test(value)) return value;
+  const clean = value.replace(/^\/+/, "");
+  // In the admin dashboard, show repo images from raw.githubusercontent.com so newly uploaded files display immediately.
+  return GITHUB_RAW_BASE + clean + "?v=" + Date.now();
+}
+
+function imageForSite(src){
+  const value = String(src || "").trim();
+  if(!value) return "";
+  if(value.startsWith("data:") || /^https?:\/\//i.test(value)) return value;
+  return value.replace(/^\/+/, "");
+}
+
+function handleAdminImageError(img, originalSrc){
+  img.classList.add("broken");
+  img.alt = "Image preview not available yet. Saved path: " + originalSrc;
+  // If an external image fails, do not keep retrying. If a local repo image fails, try the GitHub Pages path as backup.
+  if(!/^https?:\/\//i.test(String(originalSrc || ""))){
+    const pagesPath = imageForSite(originalSrc) + "?v=" + Date.now();
+    if(img.src !== new URL(pagesPath, window.location.href).href){
+      img.src = pagesPath;
+      return;
+    }
+  }
+}
+
 
 if(PLACEHOLDER){
   $("#notConnected").classList.remove("hidden");
@@ -352,16 +385,21 @@ async function loadGallery(){
   try{
     const data = await api("/api/admin/gallery-list");
     const images = data.images || [];
-    $("#galleryGrid").innerHTML = images.map((img, index) => `
-      <article class="gallery-card">
-        <img src="${escapeHtml(img.src)}" alt="${escapeHtml(img.alt || "")}">
-        <strong>${escapeHtml(img.label || "Gallery image")}</strong>
-        <p class="small">${escapeHtml(img.alt || "")}</p>
-        <button class="btn secondary delete-photo" data-src="${escapeHtml(img.src)}" type="button">Remove</button>
-      </article>
-    `).join("") || "<p>No gallery images yet.</p>";
+    $("#galleryGrid").innerHTML = images.map((img, index) => {
+      const rawSrc = img.src || "";
+      const previewSrc = imageForAdmin(rawSrc);
+      return `
+        <article class="gallery-card">
+          <img src="${escapeHtml(previewSrc)}" alt="${escapeHtml(img.alt || img.label || "Gallery image")}" data-original-src="${escapeHtml(rawSrc)}" onerror="handleAdminImageError(this, this.dataset.originalSrc)">
+          <strong>${escapeHtml(img.label || "Gallery image")}</strong>
+          <p class="small">${escapeHtml(img.alt || "")}</p>
+          <p class="gallery-path">${escapeHtml(rawSrc)}</p>
+          <button class="btn secondary delete-photo" data-src="${escapeHtml(rawSrc)}" type="button">Remove</button>
+        </article>
+      `;
+    }).join("") || "<p>No gallery images yet.</p>";
     $$(".delete-photo").forEach(btn => btn.addEventListener("click", () => deletePhoto(btn.dataset.src)));
-    setStatus("#galleryStatus", `Gallery loaded: ${images.length} image(s).`);
+    setStatus("#galleryStatus", `Gallery loaded: ${images.length} image(s). Local uploads can take GitHub Pages a minute to appear on the public site, but the admin preview now uses the raw GitHub image where possible.`);
   }catch(err){
     setStatus("#galleryStatus", "Gallery load failed: " + err.message);
   }

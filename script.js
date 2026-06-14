@@ -118,11 +118,33 @@ async function renderFacilities(){
   mount.innerHTML = (data.facilities || []).map(item => `<span>${item}</span>`).join("");
 }
 
+
+function resolvePublicImage(src){
+  const value = String(src || "").trim();
+  if(!value) return "";
+  if(value.startsWith("data:") || /^https?:\/\//i.test(value)) return value;
+  return value.replace(/^\/+/, "");
+}
+
+function publicImageFallback(img, originalSrc){
+  const value = String(originalSrc || "");
+  if(!value || /^https?:\/\//i.test(value)) {
+    img.closest("figure")?.classList.add("image-missing");
+    return;
+  }
+  const raw = "https://raw.githubusercontent.com/almagroupbranding/pub/main/" + value.replace(/^\/+/, "") + "?v=" + Date.now();
+  if(img.src !== raw){
+    img.src = raw;
+  } else {
+    img.closest("figure")?.classList.add("image-missing");
+  }
+}
+
 async function renderGallery(){
   const mount = $("[data-gallery]");
   if(!mount) return;
   const data = await getJSON("content/gallery.json");
-  mount.innerHTML = (data.images || []).map(img => `<figure><img src="${img.src}" alt="${img.alt}" loading="lazy"><figcaption>${img.label}</figcaption></figure>`).join("");
+  mount.innerHTML = (data.images || []).map(img => `<figure><img src="${resolvePublicImage(img.src)}" alt="${img.alt || img.label || 'Gallery image'}" loading="lazy" data-original-src="${img.src || ''}" onerror="publicImageFallback(this, this.dataset.originalSrc)"><figcaption>${img.label || ""}</figcaption></figure>`).join("");
 }
 
 function initMenu(){
