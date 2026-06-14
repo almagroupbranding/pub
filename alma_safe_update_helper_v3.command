@@ -5,7 +5,7 @@ LIVE_WORKER_URL="https://alma-ai-admin.almagroupbranding.workers.dev"
 DEFAULT_REPO="$HOME/Documents/GitHub/pub"
 
 echo "================================================="
-echo " The Alma SAFE Website Patch Helper v2"
+echo " The Alma SAFE Website Patch Helper v3"
 echo "================================================="
 echo ""
 echo "This version:"
@@ -13,7 +13,7 @@ echo "  1. unzips an update package"
 echo "  2. copies files into your local pub repo"
 echo "  3. NEVER deletes existing files"
 echo "  4. protects site-config.js with the live Worker URL"
-echo "  5. refuses to commit only if ACTUAL deletions are detected"
+echo "  5. stops only if Git reports actual deleted files"
 echo ""
 
 read -p "Local pub repo path [$DEFAULT_REPO]: " REPO_PATH
@@ -24,8 +24,6 @@ if [ ! -d "$REPO_PATH/.git" ]; then
   echo ""
   echo "ERROR: I could not find a Git repo at:"
   echo "$REPO_PATH"
-  echo ""
-  echo "Open GitHub Desktop, clone almagroupbranding/pub, then run this again."
   exit 1
 fi
 
@@ -44,11 +42,9 @@ if [ ! -f "$ZIP_PATH" ]; then
 fi
 
 TMP_DIR="$(mktemp -d)"
-echo ""
-echo "Unzipping update..."
 unzip -q "$ZIP_PATH" -d "$TMP_DIR"
 
-UPDATE_ROOT="$(find "$TMP_DIR" -maxdepth 4 -type f \( -name "ai-admin.html" -o -name "index.html" -o -name "site-config.js" \) -print -quit | xargs dirname)"
+UPDATE_ROOT="$(find "$TMP_DIR" -maxdepth 4 -type f \( -name "index.html" -o -name "site-config.js" -o -name "food-drink.html" \) -print -quit | xargs dirname)"
 
 if [ -z "$UPDATE_ROOT" ] || [ ! -d "$UPDATE_ROOT" ]; then
   echo ""
@@ -57,31 +53,20 @@ if [ -z "$UPDATE_ROOT" ] || [ ! -d "$UPDATE_ROOT" ]; then
   exit 1
 fi
 
-echo "Found update files in:"
-echo "$UPDATE_ROOT"
-echo ""
-
 cd "$REPO_PATH"
 
-echo "Checking for uncommitted existing changes first..."
-if ! git diff --quiet || ! git diff --cached --quiet || [ -n "$(git ls-files --others --exclude-standard)" ]; then
+if ! git diff --quiet || ! git diff --cached --quiet; then
   echo ""
-  echo "WARNING: Your local repo already has changes."
-  echo "Open GitHub Desktop and either commit or discard those first."
-  echo ""
-  echo "Current changes:"
+  echo "WARNING: Your repo already has uncommitted tracked changes."
+  echo "Commit or discard those first."
   git status --short
   rm -rf "$TMP_DIR"
   exit 1
 fi
 
-echo "Copying files safely into local repo..."
-echo "No existing files will be deleted."
-
-rsync -a \
-  --exclude ".git" \
-  --exclude ".DS_Store" \
-  "$UPDATE_ROOT/" "$REPO_PATH/"
+echo ""
+echo "Copying files safely. Existing files will not be deleted."
+rsync -a --exclude ".git" --exclude ".DS_Store" "$UPDATE_ROOT/" "$REPO_PATH/"
 
 cat > "$REPO_PATH/site-config.js" <<EOF
 // The Alma AI settings
@@ -90,27 +75,15 @@ window.ALMA_AI_API = "$LIVE_WORKER_URL";
 EOF
 
 echo ""
-echo "Checking site-config.js..."
-if grep -q "$LIVE_WORKER_URL" "$REPO_PATH/site-config.js"; then
-  echo "OK: site-config.js has the live Worker URL."
-else
-  echo "ERROR: site-config.js does not contain the live Worker URL."
-  rm -rf "$TMP_DIR"
-  exit 1
-fi
-
-echo ""
 echo "Changed files:"
 git status --short
 
 DELETIONS="$(git status --porcelain | awk 'substr($0,1,2) ~ /D/ {print}')"
 if [ -n "$DELETIONS" ]; then
   echo ""
-  echo "STOP: actual deletions detected."
+  echo "STOP: actual deleted files detected:"
   echo "$DELETIONS"
-  echo ""
-  echo "Nothing has been committed."
-  echo "Open GitHub Desktop and discard changes, then ask for help."
+  echo "Nothing committed."
   rm -rf "$TMP_DIR"
   exit 1
 fi
@@ -123,13 +96,10 @@ if [ "$CONFIRM" != "YES" ]; then
   exit 0
 fi
 
-read -p "Commit message [Upgrade Alma site with current content and photos]: " COMMIT_MSG
-COMMIT_MSG="${COMMIT_MSG:-Upgrade Alma site with current content and photos}"
+read -p "Commit message [Update Alma menus and signage content]: " COMMIT_MSG
+COMMIT_MSG="${COMMIT_MSG:-Update Alma menus and signage content}"
 
-echo ""
-echo "Committing and pushing..."
 git add -A
-
 if git diff --cached --quiet; then
   echo "No changes to commit."
 else
@@ -141,15 +111,13 @@ WORKER_FILE="$(find "$UPDATE_ROOT" -maxdepth 2 -type f \( -name "CLOUDFLARE-WORK
 if [ -n "$WORKER_FILE" ] && command -v pbcopy >/dev/null 2>&1; then
   cat "$WORKER_FILE" | pbcopy
   echo ""
-  echo "Cloudflare Worker code was found and copied to your clipboard:"
+  echo "Cloudflare Worker code copied to clipboard:"
   echo "$WORKER_FILE"
-  echo "Open Cloudflare Worker editor, select all, paste, and Deploy."
 fi
 
 echo ""
 echo "Done."
-echo "Live site: https://almagroupbranding.github.io/pub/"
-echo "Hard refresh if needed: Command + Shift + R"
+echo "Check:"
+echo "https://almagroupbranding.github.io/pub/food-drink.html"
 echo ""
-
 rm -rf "$TMP_DIR"

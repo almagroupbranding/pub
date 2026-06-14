@@ -1,11 +1,12 @@
 {
-  "intro": "All food is freshly cooked and prepared in The Alma’s continued Scores on the Doors 5-star rated kitchen. Lunch gets busy, so bookings are recommended while walk-ins remain welcome.",
+  "intro": "Freshly cooked lunch favourites, paninis, jacket potatoes, desserts and bar pizzas — all served with The Alma’s proper local welcome.",
+  "service_note": "Lunch is served Monday to Friday, 12pm–2:30pm. Food is cooked fresh to order in the 5-star rated kitchen, so please allow around 20–25 minutes at busy times.",
   "highlights": [
     "Lunch menu Monday to Friday, 12pm–2:30pm",
-    "Stuffed crust stone-baked pizzas available through the week",
-    "Monthly Manze’s Pie & Mash events",
-    "Selected Sunday carvery dates including key seasonal days",
-    "Event buffet and BBQ menu options for suitable private bookings"
+    "Freshly cooked pub favourites from the 5-star rated kitchen",
+    "Paninis, jacket potatoes, dirty chips and desserts",
+    "Pizzas available at the bar when you fancy something to eat",
+    "Function food options available for suitable private bookings"
   ],
   "menus": [
     {
@@ -13,38 +14,304 @@
       "text": "Freshly cooked lunchtime pub food, served Monday to Friday from 12pm to 2:30pm."
     },
     {
-      "title": "Stuffed Crust Pizzas",
-      "text": "9” and 10” stone-baked stuffed crust pizzas, available most days until the evening kitchen cut-off."
-    },
-    {
-      "title": "Manze’s Pie & Mash",
-      "text": "A regular Alma favourite served on selected dates. Check the events page for the next sitting."
-    },
-    {
-      "title": "Sunday Carvery Dates",
-      "text": "Selected carvery events across the year, including Mother’s Day, Easter Sunday, Father’s Day, November and Christmas Day."
+      "title": "Pizzas at the Bar",
+      "text": "A small selection of vegetarian and meat pizzas available through the bar. Please ask the team."
     },
     {
       "title": "Function Food",
-      "text": "Buffet and BBQ options for wakes, meetings, celebrations and private gatherings."
+      "text": "Buffet and BBQ options are available for suitable private bookings and owner-approved events."
     }
   ],
-  "source_menu_links": [
+  "downloads": [
     {
-      "title": "Lunch menu from January 2026",
-      "url": "https://www.thealmapub.co.uk/food-drink/"
+      "title": "Lunch Menu – Mains & Sandwiches",
+      "url": "assets/menus/02_Lunch_Menu_Page_1_Mains_Sandwiches_Refreshed.pdf"
     },
     {
-      "title": "Event Buffet Menu 2026",
-      "url": "https://www.thealmapub.co.uk/food-drink/"
+      "title": "Lunch Menu – Paninis, Jackets & Desserts",
+      "url": "assets/menus/03_Lunch_Menu_Page_2_Paninis_Jackets_Desserts_Refreshed.pdf"
     },
     {
-      "title": "BBQ Event Menu 2026",
-      "url": "https://www.thealmapub.co.uk/food-drink/"
-    },
-    {
-      "title": "Pizza Menu",
-      "url": "https://www.thealmapub.co.uk/food-drink/"
+      "title": "Pizzas at the Bar",
+      "url": "assets/menus/01_Pizzas_At_The_Bar_Refreshed.pdf"
     }
-  ]
+  ],
+  "menu_sections": [
+    {
+      "title": "Mains",
+      "items": [
+        {
+          "name": "Ham, egg and chips",
+          "description": "Single £7.20 / Double £8.50",
+          "price": ""
+        },
+        {
+          "name": "Scampi and chips",
+          "description": "Served with lemon wedge and salad garnish",
+          "price": "£10.50"
+        },
+        {
+          "name": "Beer battered cod fillet and chips",
+          "description": "Served with lemon wedge and salad garnish",
+          "price": "£10.50"
+        },
+        {
+          "name": "Homemade pie and chips",
+          "description": "Ask for today’s filling",
+          "price": "£9.90"
+        },
+        {
+          "name": "Cumberland sausages",
+          "description": "With mash and onion gravy",
+          "price": "£9.90"
+        },
+        {
+          "name": "The Alma omelette (v)",
+          "description": "Cheese, ham, cherry tomatoes & peppers",
+          "price": "£9.20"
+        },
+        {
+          "name": "Plain omelette (v)",
+          "description": "Just egg",
+          "price": "£7.00"
+        },
+        {
+          "name": "Cheese or ham omelette (v)",
+          "description": "",
+          "price": "£8.00"
+        },
+        {
+          "name": "Homemade beef lasagne",
+          "description": "Served with chips or salad",
+          "price": "£10.50"
+        },
+        {
+          "name": "Crispy chicken Caesar salad",
+          "description": "",
+          "price": "£9.50"
+        },
+        {
+          "name": "The Alma burger",
+          "description": "Beef pattie or chicken Milanese with mayo, lettuce, tomato, onion & gherkin. Served with chips. Add cheese +£1.00",
+          "price": "£10.50"
+        }
+      ]
+    },
+    {
+      "title": "Sandwiches / Baguettes",
+      "note": "Served with crisps and salad garnish. Choose tiger white, Hovis brown, or sourdough baguette +£1.00.",
+      "items": [
+        {
+          "name": "Fish finger",
+          "price": "£6.50"
+        },
+        {
+          "name": "Tuna mayo",
+          "price": "£6.50"
+        },
+        {
+          "name": "Tuna mayo & sweetcorn",
+          "price": "£6.80"
+        },
+        {
+          "name": "Prawn mayo",
+          "price": "£8.20"
+        },
+        {
+          "name": "Cheese & pickle (v)",
+          "price": "£6.50"
+        },
+        {
+          "name": "Ham & mustard",
+          "price": "£6.50"
+        },
+        {
+          "name": "Cumberland sausage",
+          "description": "With caramelised onion, mustard & mayonnaise",
+          "price": "£8.90"
+        },
+        {
+          "name": "Hot dog baguette with fried onions",
+          "description": "Single £8.90 / Double £9.90",
+          "price": ""
+        },
+        {
+          "name": "Steak sandwich",
+          "description": "With caramelised onion, mustard & mayonnaise",
+          "price": "£9.90"
+        }
+      ]
+    },
+    {
+      "title": "Paninis",
+      "note": "Served with salad garnish and dressing.",
+      "items": [
+        {
+          "name": "Cheese panini (v)",
+          "price": "£6.10"
+        },
+        {
+          "name": "Cheese with ham, tomato or onion (v)",
+          "price": "£7.10"
+        },
+        {
+          "name": "Chicken Milanese panini",
+          "description": "Lettuce, tomato and mayo",
+          "price": "£8.90"
+        }
+      ]
+    },
+    {
+      "title": "Jacket Potatoes",
+      "note": "Served with butter and grated cheddar & mozzarella.",
+      "items": [
+        {
+          "name": "Just cheese or Heinz beans (ve)",
+          "price": "£7.50"
+        },
+        {
+          "name": "Heinz beans & cheese (v)",
+          "price": "£8.50"
+        },
+        {
+          "name": "Tuna mayo",
+          "price": "£8.50"
+        },
+        {
+          "name": "Tuna mayo & sweetcorn",
+          "price": "£8.80"
+        },
+        {
+          "name": "Prawn mayo",
+          "price": "£9.90"
+        },
+        {
+          "name": "Homemade spicy chilli con carne",
+          "description": "With cheese",
+          "price": "£9.90"
+        }
+      ]
+    },
+    {
+      "title": "Dirty Chips, Sides & Smaller Bites",
+      "items": [
+        {
+          "name": "Dirty chips with cheese",
+          "price": "£4.90"
+        },
+        {
+          "name": "Dirty chips with cheese and jalapeños",
+          "price": "£5.40"
+        },
+        {
+          "name": "Dirty chips with chilli con carne",
+          "description": "With cheese & garlic mayo",
+          "price": "£7.90"
+        },
+        {
+          "name": "Chips",
+          "price": "£4.50"
+        },
+        {
+          "name": "Garlic bread (ve)",
+          "price": "£3.90"
+        },
+        {
+          "name": "Cheesy garlic bread (v)",
+          "price": "£4.50"
+        },
+        {
+          "name": "Soup of the day (ve)",
+          "description": "Served with bread and butter",
+          "price": "£4.80"
+        }
+      ]
+    },
+    {
+      "title": "Desserts & Hot Drinks",
+      "note": "Desserts are served with either double cream or custard. Hot drinks are served during kitchen opening hours.",
+      "items": [
+        {
+          "name": "Sticky toffee sponge",
+          "description": "Also available: spotted dick or golden syrup sponge",
+          "price": "£4.60"
+        },
+        {
+          "name": "Chocolate melt-in-the-middle pudding",
+          "price": "£5.20"
+        },
+        {
+          "name": "Pot of tea for 1",
+          "price": "£3.50"
+        },
+        {
+          "name": "Nescafé Dolce Gusto",
+          "description": "Café au lait intense or espresso",
+          "price": "£4.00"
+        }
+      ]
+    },
+    {
+      "title": "Pizzas at the Bar",
+      "note": "Available when you fancy something to eat. During very busy periods, pizzas may not be available — please ask at the bar.",
+      "items": [
+        {
+          "name": "Cheddar & Mozzarella Feast",
+          "description": "9 inch cheese stuffed crust",
+          "price": "£8.50"
+        },
+        {
+          "name": "Ultimate Garlic & Cheese",
+          "description": "9 inch cheese stuffed crust",
+          "price": "£8.50"
+        },
+        {
+          "name": "Margherita",
+          "description": "10 inch cherry tomatoes & pesto",
+          "price": "£9.50"
+        },
+        {
+          "name": "Goat’s Cheese",
+          "description": "10 inch cherry tomatoes & balsamic red onions",
+          "price": "£9.50"
+        },
+        {
+          "name": "BBQ Meat Feast",
+          "description": "9 inch cheese stuffed crust",
+          "price": "£8.50"
+        },
+        {
+          "name": "Cajun Chicken",
+          "description": "10 inch sweet drop red peppers & red onion",
+          "price": "£9.50"
+        },
+        {
+          "name": "Milano Salami & ’Nduja",
+          "description": "10 inch Calabrian ’nduja sausage",
+          "price": "£9.50"
+        },
+        {
+          "name": "Creamy Mascarpone & Smoked Ham",
+          "description": "10 inch portobello mushrooms & smoked ham",
+          "price": "£9.50"
+        },
+        {
+          "name": "Spicy Salami & Honey",
+          "description": "10 inch spicy tomato sauce & spicy honey drizzle",
+          "price": "£9.50"
+        }
+      ]
+    }
+  ],
+  "public_house_notes": [
+    {
+      "title": "Garden etiquette",
+      "text": "Please help keep the garden tidy, use the ashtrays provided, respect our neighbours, and enjoy the space calmly."
+    },
+    {
+      "title": "Late evening entry",
+      "text": "Entry or re-entry may be restricted later in the evening in line with licence conditions."
+    }
+  ],
+  "allergy_note": "If you have any allergies or intolerances, please let us know before ordering. Not all dishes can be guaranteed allergen-free. (v) vegetarian friendly • (ve) vegan friendly."
 }

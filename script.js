@@ -56,13 +56,48 @@ async function renderNews(){
 async function renderFood(){
   const highlights = $("[data-food-highlights]");
   const menus = $("[data-food-menus]");
-  if(!highlights && !menus) return;
+  const menuSections = $("[data-food-menu-sections]");
+  const downloads = $("[data-food-downloads]");
+  const notes = $("[data-house-notes]");
+  if(!highlights && !menus && !menuSections && !downloads && !notes) return;
   const data = await getJSON("content/food.json");
+
   if(highlights){
-    highlights.innerHTML = `<h3>Kitchen highlights</h3><p>${data.intro || ""}</p><ul>${(data.highlights || []).map(x => `<li>${x}</li>`).join("")}</ul>`;
+    highlights.innerHTML = `<h3>Kitchen highlights</h3><p>${data.intro || ""}</p><ul>${(data.highlights || []).map(x => `<li>${x}</li>`).join("")}</ul>${data.service_note ? `<p class="small-note">${data.service_note}</p>` : ""}`;
   }
+
   if(menus){
     menus.innerHTML = (data.menus || []).map(menu => `<article class="card"><div class="card-body"><h3>${menu.title}</h3><p>${menu.text}</p></div></article>`).join("");
+  }
+
+  if(downloads){
+    downloads.innerHTML = (data.downloads || []).map(item => `<a class="download-card" href="${item.url}" target="_blank" rel="noopener"><strong>${item.title}</strong><span>Open print-ready PDF</span></a>`).join("");
+  }
+
+  if(menuSections){
+    menuSections.innerHTML = (data.menu_sections || []).map(section => `
+      <article class="menu-section">
+        <div class="menu-section-head">
+          <h3>${section.title}</h3>
+          ${section.note ? `<p>${section.note}</p>` : ""}
+        </div>
+        <div class="menu-items">
+          ${(section.items || []).map(item => `
+            <div class="menu-item">
+              <div>
+                <strong>${item.name}</strong>
+                ${item.description ? `<span>${item.description}</span>` : ""}
+              </div>
+              ${item.price ? `<b>${item.price}</b>` : ""}
+            </div>
+          `).join("")}
+        </div>
+      </article>
+    `).join("") + (data.allergy_note ? `<p class="allergy-note">${data.allergy_note}</p>` : "");
+  }
+
+  if(notes){
+    notes.innerHTML = (data.public_house_notes || []).map(note => `<article class="card"><div class="card-body"><h3>${note.title}</h3><p>${note.text}</p></div></article>`).join("");
   }
 }
 
