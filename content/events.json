@@ -1,13 +1,6 @@
 {
   "events": [
     {
-      "date": "2026-06-09",
-      "title": "Event at The Alma",
-      "type": "Event",
-      "summary": "Join us at The Alma for a warm local event with good company and a proper pub atmosphere.",
-      "cta": "Join us"
-    },
-    {
       "date": "2026-06-12",
       "title": "Comedy Night",
       "type": "Entertainment",
