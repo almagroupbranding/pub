@@ -1,6 +1,6 @@
 {
-  "intro": "Freshly cooked lunch favourites, paninis, jacket potatoes, desserts and bar pizzas — all served with The Alma’s proper local welcome.",
-  "service_note": "Lunch is served Monday to Friday, 12pm–2:30pm. Food is cooked fresh to order in the 5-star rated kitchen, so please allow around 20–25 minutes at busy times.",
+  "intro": "Freshly cooked lunch favourites, paninis, jacket potatoes, desserts and pizzas at the bar — all served with The Alma’s proper local welcome.",
+  "service_note": "Lunch is served Monday to Friday, 12pm–2:30pm. Food is cooked fresh to order in our 5-star rated kitchen, so please allow around 20–25 minutes at busy times.",
   "highlights": [
     "Lunch menu Monday to Friday, 12pm–2:30pm",
     "Freshly cooked pub favourites from the 5-star rated kitchen",
@@ -19,7 +19,7 @@
     },
     {
       "title": "Function Food",
-      "text": "Buffet and BBQ options are available for suitable private bookings and owner-approved events."
+      "text": "Buffet and BBQ options may be available for suitable private bookings and owner-approved events."
     }
   ],
   "downloads": [
@@ -313,5 +313,23 @@
       "text": "Entry or re-entry may be restricted later in the evening in line with licence conditions."
     }
   ],
-  "allergy_note": "If you have any allergies or intolerances, please let us know before ordering. Not all dishes can be guaranteed allergen-free. (v) vegetarian friendly • (ve) vegan friendly."
+  "allergy_note": "If you have any allergies or intolerances, please let us know before ordering. Not all dishes can be guaranteed allergen-free. (v) vegetarian friendly • (ve) vegan friendly.",
+  "house_notes": [
+    {
+      "title": "Fresh to order",
+      "text": "Food is cooked fresh to order. At busy times, please allow around 20–25 minutes."
+    },
+    {
+      "title": "Ordering as a group",
+      "text": "For groups of 3 or more, please order together where possible."
+    },
+    {
+      "title": "Allergies",
+      "text": "Please tell the team about any allergies or intolerances before ordering. Not all dishes can be guaranteed allergen-free."
+    },
+    {
+      "title": "Dietary notes",
+      "text": "(v) vegetarian friendly • (ve) vegan friendly."
+    }
+  ]
 }

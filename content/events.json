@@ -18,14 +18,14 @@
       "date": "2026-06-19",
       "title": "Father’s Day Carvery",
       "type": "Food",
-      "summary": "A special Alma carvery date. Book early to avoid missing out.",
+      "summary": "A special Alma carvery date. Please book early to avoid missing out.",
       "cta": "Ask about booking"
     },
     {
       "date": "2026-06-21",
       "title": "Live Entertainment",
       "type": "Live music",
-      "summary": "Sunday entertainment at The Alma with familiar faces and a proper local atmosphere.",
+      "summary": "Sunday entertainment with familiar faces and a proper local atmosphere.",
       "cta": "See what’s on"
     },
     {
@@ -67,7 +67,7 @@
       "date": "2026-07-31",
       "title": "Friday Night DJ",
       "type": "DJ",
-      "summary": "Friday night music and weekend atmosphere at The Alma.",
+      "summary": "Start the weekend at The Alma with Friday night DJ entertainment.",
       "cta": "Plan your night"
     },
     {
@@ -88,7 +88,7 @@
       "date": "2026-08-28",
       "title": "Friday Night DJ",
       "type": "DJ",
-      "summary": "Friday night DJ entertainment at The Alma.",
+      "summary": "Start the weekend at The Alma with Friday night DJ entertainment.",
       "cta": "Plan your night"
     }
   ]
