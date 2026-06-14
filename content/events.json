@@ -1,6 +1,13 @@
 {
   "events": [
     {
+      "date": "2026-06-14",
+      "title": "Event at The Alma",
+      "type": "Food",
+      "summary": "Join us for a special food event at The Alma. Booking is recommended so the kitchen can plan properly.",
+      "cta": "Join us"
+    },
+    {
       "date": "2026-06-15",
       "title": "Mat & JP’s Fun Pub Quiz",
       "type": "Quiz",
